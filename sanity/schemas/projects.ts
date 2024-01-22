@@ -13,6 +13,7 @@ export default {
         name: 'slug',
         type: 'slug',
         title: 'Slug of your blog article',
+        // this add the generate slug from the title.
         options: {
           source:'title',
         }
@@ -31,6 +32,7 @@ export default {
         name: 'content',
         type: 'array',
         title: 'Content',
+        // that makes a big textarea for editing
         of: [
           {
             type: 'block'
