@@ -15,7 +15,7 @@ export default {
         title: 'Slug of your blog article',
         // this add the generate slug from the title.
         options: {
-          source:'title',
+          source:'name',
         }
       },
       {
