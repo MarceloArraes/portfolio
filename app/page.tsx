@@ -1,10 +1,11 @@
 import Image from "next/image";
-import Navbar from "./components/Navbar";
 import { client, urlFor } from "./lib/sanity";
 import { simpleProjectCard } from "./lib/interface";
 import { Card, CardContent } from "../components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
+export const revalidate = 3600; // revalidate cache every hour
 
 const fetchProjects = async() =>{
   const query = `*[_type=='project'] | order(_createdAt desc){

@@ -3,6 +3,9 @@ import { client, urlFor } from "@/app/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 
+export const revalidate = 3600; // revalidate cache every hour
+
+
 async function getDataOfProject(slug:string){
     const querySingleProject = `*[_type=="project" && slug.current == '${slug}'] {
         name,
