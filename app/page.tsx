@@ -6,7 +6,7 @@ import { Card, CardContent } from "../components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-export const fetchProjects = async() =>{
+const fetchProjects = async() =>{
   const query = `*[_type=='project'] | order(_createdAt desc){
     name, smallDescription, 
       "currentSlug":slug.current,
