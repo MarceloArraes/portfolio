@@ -25,7 +25,7 @@ export default async function Home() {
     <div className="grid grid-cols-1 lg:grid-cols-2 mt-5">
       {data.map((post, idx)=>{
         return <Card key={idx}>
-          {/* <Image className="rounded-t-lg h-[200px] object-contain" height={500} width={500} alt="" src={urlFor(post.siteImage).url()}/> */}
+          <Image className="rounded-t-lg h-[200px] object-contain" height={500} width={500} alt="" src={urlFor(post.siteImage).url()}/>
           <CardContent className="mt-5">
             <h3 className="text-lg">{post.name}</h3>
             <p className="line-clamp-1 text-sm mt-2 text-gray-600 dark:text-gray-300">{post.techDescription}</p>
