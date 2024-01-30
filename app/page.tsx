@@ -9,9 +9,9 @@ export const revalidate = 30; // revalidate cache every hour
 
 const fetchProjects = async() =>{
   const query = `*[_type=='project'] | order(_createdAt desc){
-    name, smallDescription, 
+    name, description, 
       "currentSlug":slug.current,
-      titleImage
+      siteImage
   }`
 
   const data = await client.fetch(query);

@@ -9,10 +9,10 @@ export const revalidate = 30; // revalidate cache every hour
 async function getDataOfProject(slug:string){
     const querySingleProject = `*[_type=="project" && slug.current == '${slug}'] {
         name,
-        content,
+        description,
         siteImage,
           "currentSlug": slug.current,
-        content
+        techDescription
     }`
     const data = await client.fetch(querySingleProject);
     return data;
@@ -37,7 +37,7 @@ const ProjectArticle = async ({params}:{params: {slug:string}}) =>{
         {data[0].currentSlug}
         {data[0].techDescription}
 
-    <Image priority className="rounded mt-8 border" height={800} width={800} alt="" src={urlFor(data[0].siteImage).url()}/>
+    {/* <Image priority className="rounded mt-8 border" height={800} width={800} alt="" src={urlFor(data[0].siteImage).url()}/> */}
     <div className="mt-16 prose-purple prose-xl dark:prose-invert prose-li:text-primary prose-a:text-primary">
         <PortableText value={data[0].description}/>
     </div>
