@@ -1,4 +1,3 @@
-
 export default {
     name: 'project',
     type: 'document',
@@ -19,27 +18,55 @@ export default {
         }
       },
       {
-        name: 'titleImage',
-        type: 'image',
-        title: 'Title Image'
-      },
-      {
-        name: 'smallDescription',
-        type: 'text',
-        title: 'Small Description'
-      },
-      {
-        name: 'content',
+        name: 'description',
         type: 'array',
-        title: 'Content',
-        // that makes a big textarea for editing
+        title: 'Description',
         of: [
           {
             type: 'block'
           }
         ]
+      },
+      {
+        name: 'siteImage',
+        type: 'image',
+        title: 'Site Image'
+      },
+      {
+        name: 'siteIcon',
+        type: 'image',
+        title: 'Site Icon'
+      },
+      {
+        name: 'tecIcon1',
+        type: 'image',
+        title: 'Tech Icon1'
+      },
+      {
+        name: 'tecIcon2',
+        type: 'image',
+        title: 'Tech Icon1'
+      },
+      {
+        name: 'tecIcon3',
+        type: 'image',
+        title: 'Tech Icon1'
+      },
+      {
+        name: 'techDescription',
+        type: 'text',
+        title: 'Tech Description'
+      },
+      {
+        title: 'Dark Image?',
+        name: 'darkimage',
+        type: 'boolean'
+      },
+      {
+        name: 'active',
+        title: 'Is active?',
+        type: 'boolean'
       }
+
     ]
   }
-
-  // edit
