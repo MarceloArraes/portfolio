@@ -1,4 +1,4 @@
-const mainProjects = [
+/* const mainProjects = [
     {
       name: 'GeoCapital stock Tracker',
       description: 'A stock tracker for GeoCapital',
@@ -176,4 +176,4 @@ const mainProjects = [
     //   tecIcon3: '/tailwindcssLogo.png',
     // },
   ]
-  
+   */

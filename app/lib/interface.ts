@@ -1,24 +1,13 @@
 export interface simpleProjectCard {
     name: string;
-    smallDescription: string;
     currentSlug: string;
-    titleImage: { _type:string, asset: [Object] };
-    content?: any;
+    description: any;
+    siteImage: { _type:string, asset: [Object] };
+    siteIcon: { _type:string, asset: [Object] };
+    tecIcon1: { _type:string, asset: [Object] };
+    tecIcon2: { _type:string, asset: [Object] };
+    tecIcon3: { _type:string, asset: [Object] };
+    techDescription?: string;
+    darkimage?: boolean;
+    active?: boolean;
 }
-
-/*     
-{
-    name: 'GeoCapital stock Tracker',
-    description: 'A stock tracker for GeoCapital',
-    site: 'https://geo-capital-online-portfolio.vercel.app/',
-    src: '/GeoCapitalTest.png',
-    siteIcon: '/nutriNotes.png',
-    darkimage: true,
-
-    active: true,
-    tecDescription: 'Typescript, Nextjs, Tailwindcss',
-    tecIcon1: '/typescripticon.png',
-    tecIcon2: '/nextjsicon.png',
-    tecIcon3: '/tailwindcssLogo.png',
-},
-*/
