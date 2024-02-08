@@ -1,32 +1,5 @@
 /* const mainProjects = [
-    {
-      name: 'GeoCapital stock Tracker',
-      description: 'A stock tracker for GeoCapital',
-      site: 'https://geo-capital-online-portfolio.vercel.app/',
-      src: '/GeoCapitalTest.png',
-      darkimage: true,
-      siteIcon: '/nutriNotes.png',
-  
-      active: true,
-      tecDescription: 'Typescript, Nextjs, Tailwindcss',
-      tecIcon1: '/typescripticon.png',
-      tecIcon2: '/nextjsicon.png',
-      tecIcon3: '/tailwindcssLogo.png',
-    },
-    {
-      name: 'Nutri Notes',
-      description: 'Nutritional information for health professionals',
-      site: 'https://nutri-notes.vercel.app/',
-      src: '/nutrinotesbg.png',
-      darkimage: false,
-  
-      active: true,
-      siteIcon: '/nutriNotes.png',
-      tecDescription: 'Nextjs, Supabase, MaterialUi',
-      tecIcon1: '/nextjsicon.png',
-      tecIcon2: '/supabaseicon.png',
-      tecIcon3: '/muiicon.png',
-    },
+
     {
       name: 'Web Widget',
       description: 'A web widget for the web',
@@ -44,34 +17,6 @@
   ]
   
   const secondProjects = [
-    {
-      name: 'Bem Paggo Form',
-      description: 'A front-end site for Bem Paggo company',
-      site: 'https://bem-pago-form.vercel.app/',
-      src: '/bempagobg.png',
-      darkimage: false,
-      siteIcon: '/bempaggoicon2.png',
-  
-      active: true,
-      tecDescription: 'Typescript, MaterialUI, Styled Components',
-      tecIcon1: '/typescripticon.png',
-      tecIcon2: '/muiicon.png',
-      tecIcon3: '/styledcomponentsicon3.png',
-    },
-    {
-      name: 'Event Platform',
-      description: 'A platform to display a online event',
-      site: 'https://event-platform-etdp6plb8-marceloarraes.vercel.app/',
-      src: '/eventplatform.png',
-      darkimage: true,
-      siteIcon: '/adamintericon.svg',
-  
-      active: true,
-      tecDescription: 'Reactjs, Vite, Graphql, vime, tailwindcss',
-      tecIcon1: '/reacticon.png',
-      tecIcon2: '/typescripticon.png',
-      tecIcon3: '/tailwindcssLogo.png',
-    },
     {
       name: 'My Portfolio',
       description: 'My portfolio with some projects.',
