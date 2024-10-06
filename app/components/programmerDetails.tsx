@@ -16,16 +16,16 @@ import { z } from "zod";
 // import { Controller, useForm } from "react-hook-form";
 // import { zodResolver } from "@hookform/resolvers/zod";
 // import { programmerDetails } from "../http/create-goal";
-import { toast } from "sonner";
-import { useQueryClient } from "@tanstack/react-query";
-import { Button } from "@/components/ui/button";
+// import { toast } from "sonner";
+// import { useQueryClient } from "@tanstack/react-query";
+// import { Button } from "@/components/ui/button";
 
-const programmerDetailsSchema = z.object({
-  title: z.string().min(1, "Inform the new activity you want to track"),
-  desiredWeeklyFrequency: z.coerce.number().min(1).max(7),
-});
+// const programmerDetailsSchema = z.object({
+//   title: z.string().min(1, "Inform the new activity you want to track"),
+//   desiredWeeklyFrequency: z.coerce.number().min(1).max(7),
+// });
 
-type ProgrammerDetailsSchema = z.infer<typeof programmerDetailsSchema>;
+// type ProgrammerDetailsSchema = z.infer<typeof programmerDetailsSchema>;
 
 export function ProgrammerDetails() {
   // const queryClient = useQueryClient();
