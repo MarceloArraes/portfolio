@@ -1,24 +1,24 @@
 import { X } from "lucide-react";
-import { Button } from "./ui/button";
-import {
-  RadioGroup,
-  RadioGroupIndicator,
-  RadioGroupItem,
-} from "./ui/radio-group";
+// import {
+//   RadioGroup,
+//   RadioGroupIndicator,
+//   RadioGroupItem,
+// } from "@/components/ui/radio-group";
 import {
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogTitle,
-} from "./ui/dialog";
-import { Input } from "./ui/input";
-import { Label } from "./ui/label";
+} from "@/components/ui/dialog";
+// import { Input } from "@/components/ui/input";
+// import { Label } from "@/components/ui/label";
 import { z } from "zod";
-import { Controller, useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { programmerDetails } from "../http/create-goal";
+// import { Controller, useForm } from "react-hook-form";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { programmerDetails } from "../http/create-goal";
 import { toast } from "sonner";
 import { useQueryClient } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
 
 const programmerDetailsSchema = z.object({
   title: z.string().min(1, "Inform the new activity you want to track"),
@@ -28,38 +28,38 @@ const programmerDetailsSchema = z.object({
 type ProgrammerDetailsSchema = z.infer<typeof programmerDetailsSchema>;
 
 export function ProgrammerDetails() {
-  const queryClient = useQueryClient();
+  // const queryClient = useQueryClient();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-    reset,
-  } = useForm<ProgrammerDetailsSchema>({
-    resolver: zodResolver(programmerDetailsSchema),
-  });
+  // const {
+  //   register,
+  //   handleSubmit,
+  //   formState: { errors },
+  //   control,
+  //   reset,
+  // } = useForm<ProgrammerDetailsSchema>({
+  //   resolver: zodResolver(programmerDetailsSchema),
+  // });
 
-  async function handleProgrammerDetails({
-    title,
-    desiredWeeklyFrequency,
-  }: ProgrammerDetailsSchema) {
-    try {
-      await programmerDetails({
-        title,
-        desiredWeeklyFrequency,
-      });
+  // async function handleProgrammerDetails({
+  //   title,
+  //   desiredWeeklyFrequency,
+  // }: ProgrammerDetailsSchema) {
+  //   try {
+  //     await programmerDetails({
+  //       title,
+  //       desiredWeeklyFrequency,
+  //     });
 
-      reset();
+  //     reset();
 
-      queryClient.invalidateQueries({ queryKey: ["pending-goals"] });
-      queryClient.invalidateQueries({ queryKey: ["summary"] });
+  //     queryClient.invalidateQueries({ queryKey: ["pending-goals"] });
+  //     queryClient.invalidateQueries({ queryKey: ["summary"] });
 
-      toast.success("Goal create successful");
-    } catch {
-      toast.error("Error creating goal!");
-    }
-  }
+  //     toast.success("Goal create successful");
+  //   } catch {
+  //     toast.error("Error creating goal!");
+  //   }
+  // }
 
   return (
     <DialogContent>
@@ -78,7 +78,7 @@ export function ProgrammerDetails() {
           </DialogDescription>
         </div>
 
-        <form
+        {/* <form
           onSubmit={handleSubmit(handleProgrammerDetails)}
           className="flex-1 flex flex-col justify-between"
         >
@@ -144,7 +144,7 @@ export function ProgrammerDetails() {
               Save
             </Button>
           </div>
-        </form>
+        </form> */}
       </div>
     </DialogContent>
   );
