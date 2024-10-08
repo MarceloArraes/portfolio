@@ -25,36 +25,46 @@ export default async function Home() {
   const data: simpleProjectCard[] = await fetchProjects();
   console.log("data ", data);
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 mt-5">
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button size="sm">
-            <Plus className="size-4" />
-            Create Goal 🎯
-          </Button>
-        </DialogTrigger>
+    <div className="container mx-auto px-4 py-10">
+      <div className="flex justify-between items-center mb-8">
+        <Dialog>
+          <DialogTrigger asChild>
+            <Button size="sm">
+              <Plus className="size-4" />
+              Create Goal 🎯
+            </Button>
+          </DialogTrigger>
+        </Dialog>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {data.map((post, idx) => {
           return (
-            <Card key={idx}>
+            <Card
+              key={idx}
+              className="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden items-center"
+            >
               <Image
-                className="rounded-t-lg h-[200px] object-contain"
+                className="rounded-t-lg h-[200px] w-full object-cover"
                 height={500}
                 width={500}
                 alt=""
                 src={urlFor(post?.siteImage)?.url() ?? ""}
               />
-              <CardContent className="mt-5">
+              <CardContent className="flex mt-5 items-center justify-center flex-col">
                 <h3 className="text-lg">{post.name}</h3>
                 <p className="line-clamp-1 text-sm mt-2 text-gray-600 dark:text-gray-300">
                   {post.techDescription}
                 </p>
-                <Button asChild className="w-full m-7">
+                <Button asChild variant="default" className="w-full">
                   <Link href={`/project/${post.currentSlug}`}>Read More</Link>
                 </Button>
               </CardContent>
             </Card>
           );
         })}
+      </div>
+      <Dialog>
         <ProgrammerDetails />
       </Dialog>
     </div>
