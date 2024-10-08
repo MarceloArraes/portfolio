@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
+import { ProgrammerDetails } from "./components/programmerDetails";
 
 export const revalidate = 30; // revalidate cache every hour
 
@@ -54,6 +55,7 @@ export default async function Home() {
             </Card>
           );
         })}
+        <ProgrammerDetails />
       </Dialog>
     </div>
   );

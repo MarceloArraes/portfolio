@@ -17,10 +17,9 @@ const HomePage = () => {
 
       <div className="container">
         <header>
-          <h1>Seeking Companion Through Time</h1>
+          <h1>Seeking Through Time</h1>
           <p>
-            Welcome to my digital love quest. Let&apos;s explore the future
-            together.
+            Welcome to my digital quest. Let&apos;s explore the future together.
           </p>
         </header>
 
@@ -30,7 +29,7 @@ const HomePage = () => {
             I&apos;m a web developer and enthusiast of all things retro and
             digital. I love diving into codes, exploring virtual worlds, and
             discussing the mysteries of history and the universe. Currently on a
-            quest to find a player two for this game called life.
+            quest to find a
           </p>
         </section>
 
