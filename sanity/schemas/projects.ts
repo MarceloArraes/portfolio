@@ -69,9 +69,16 @@ export default {
       title: 'Site Link',
     },
     {
-      name: 'showcaseVideo',
-      type: 'url',
-      title: 'Showcase Video',
+      name: 'showcaseVideoFile',
+      type: 'file',
+      title: 'Showcase Video File',
+      fields: [
+        {
+          name: 'asset',
+          type: 'reference',
+          to: [{type: 'sanity.fileAsset'}],
+        },
+      ],
     },
     {
       name: 'techDescription',

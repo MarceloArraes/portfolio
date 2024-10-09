@@ -34,6 +34,7 @@ export default async function Home() {
               Create Goal 🎯
             </Button>
           </DialogTrigger>
+          <ProgrammerDetails />
         </Dialog>
       </div>
 
@@ -64,9 +65,6 @@ export default async function Home() {
           );
         })}
       </div>
-      <Dialog>
-        <ProgrammerDetails />
-      </Dialog>
     </div>
   );
 }
