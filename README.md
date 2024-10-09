@@ -13,3 +13,8 @@
 -
 
 ## Make Theme toggle just a flipper not a options dropper
+
+## Sanity commands
+
+- After I changed the schema I run the build and them the deploy
+- npx sanity build && npx sanity deploy

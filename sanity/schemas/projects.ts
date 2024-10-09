@@ -1,3 +1,5 @@
+import {defineArrayMember} from 'sanity'
+
 export default {
   name: 'project',
   type: 'document',
@@ -51,6 +53,15 @@ export default {
       name: 'tecIcon3',
       type: 'image',
       title: 'Tech Icon 3',
+    },
+    {
+      name: 'tags',
+      type: 'array',
+      title: 'Tags for item',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags',
+      },
     },
     {
       name: 'siteLink',
