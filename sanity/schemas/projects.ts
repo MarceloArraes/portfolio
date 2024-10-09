@@ -58,10 +58,16 @@ export default {
       title: 'Site Link',
     },
     {
+      name: 'showcaseVideo',
+      type: 'url',
+      title: 'Showcase Video',
+    },
+    {
       name: 'techDescription',
       type: 'text',
       title: 'Tech Description',
     },
+
     {
       title: 'Dark Image?',
       name: 'darkimage',
