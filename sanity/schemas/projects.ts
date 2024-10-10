@@ -1,6 +1,6 @@
-import {defineArrayMember} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
-export default {
+export default defineType({
   name: 'project',
   type: 'document',
   title: 'Project',
@@ -68,18 +68,14 @@ export default {
       type: 'url',
       title: 'Site Link',
     },
-    {
+    defineField({
       name: 'showcaseVideoFile',
       type: 'file',
       title: 'Showcase Video File',
-      fields: [
-        {
-          name: 'asset',
-          type: 'reference',
-          to: [{type: 'sanity.fileAsset'}],
-        },
-      ],
-    },
+      options: {
+        accept: 'video/*',
+      },
+    }),
     {
       name: 'techDescription',
       type: 'text',
@@ -97,4 +93,4 @@ export default {
       type: 'boolean',
     },
   ],
-}
+})

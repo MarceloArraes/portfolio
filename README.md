@@ -10,6 +10,7 @@
   - maybe that circle that expand changing the colors of the componenets on the background.
 - Choose a different color pallet.
 - Add progress bar maybe to keep track of the year goal of pushs on github.
+- Add a new table on sanity with books I read a brief consideration and rating to add on my portfolio.
 -
 
 ## Make Theme toggle just a flipper not a options dropper
