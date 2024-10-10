@@ -2,47 +2,129 @@ import { simpleProjectCard } from "@/app/lib/interface";
 import { client, urlFor } from "@/app/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Separator } from "@/components/ui/separator";
+import { Video } from "@/components/ui/video"; // Assuming you have a custom video component or ShadCN-compatible component for video display
+import { getFileAsset } from "@sanity/asset-utils";
 
-export const revalidate = 30; // revalidate cache every hour
+export const revalidate = 30;
 
-
-async function getDataOfProject(slug:string){
-    const querySingleProject = `*[_type=="project" && slug.current == '${slug}'] {
+async function getDataOfProject(slug: string) {
+  const querySingleProject = `*[_type=="project" && slug.current == '${slug}'] {
         name,
         description,
         siteImage,
-          "currentSlug": slug.current,
-        techDescription
-    }`
-    const data = await client.fetch(querySingleProject);
-    return data;
+        siteLink,
+        tags,
+        showcaseVideoFile,
+        techDescription,
+        "currentSlug": slug.current
+    }`;
+  const data = await client.fetch(querySingleProject);
+  return data;
 }
 
+function getVideoUrl(assetRef: any) {
+  if (!assetRef || !assetRef.asset) return null;
 
-const ProjectArticle = async ({params}:{params: {slug:string}}) =>{
-    const data: simpleProjectCard[] = await getDataOfProject(params.slug);
-    console.log('data2131 ', data, params.slug);
-    return(
-    <div className="mt-8">
-    <h1>
-        <span className="block text-base  text-center text-primary font-semibold tracking-wide uppercase">
-        {data[0].name}
-            
-        </span>
-        <span className="mt-2 block text-3xl text-center leading-8 font-bold tracking-tight sm:text-4xl">
-        Hello from project and stuff412
-            
-            </span>
-    </h1>
-        {data[0].currentSlug}
-        {data[0].techDescription}
+  const assetUrl = getFileAsset(assetRef.asset, {
+    projectId: "4hfzjbz1",
+    dataset: "production",
+    // projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+    // dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  });
 
-    <Image priority className="rounded mt-8 border" height={800} width={800} alt="" src={urlFor(data[0]?.siteImage)?.url()??''}/>
-    <div className="mt-16 prose-purple prose-xl dark:prose-invert prose-li:text-primary prose-a:text-primary">
-        <PortableText value={data[0].description}/>
-    </div>
-    </div>
-    )
+  return assetUrl ? assetUrl.url : null;
 }
+
+const ProjectArticle = async ({ params }: { params: { slug: string } }) => {
+  const data: simpleProjectCard[] = await getDataOfProject(params.slug);
+  //   type ProjectData = ReturnType<typeof getDataOfProject>;
+  console.log("data1223", data);
+  return (
+    <div className="container mx-auto mt-12 p-4">
+      <h1 className="text-center text-4xl font-extrabold tracking-tight">
+        {data[0]?.name}
+      </h1>
+
+      {data[0]?.currentSlug && (
+        <p className="text-center mt-2 text-lg text-muted-foreground">
+          {data[0]?.currentSlug}
+        </p>
+      )}
+
+      <Separator className="my-6" />
+
+      <div className="flex justify-center">
+        {data[0]?.siteImage && (
+          <Image
+            priority
+            className="rounded-lg border shadow-lg"
+            height={800}
+            width={800}
+            alt={`${data[0]?.name} project image`}
+            src={urlFor(data[0]?.siteImage)?.url() ?? ""}
+          />
+        )}
+      </div>
+
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold">Description</h2>
+        <div className="prose prose-lg dark:prose-invert mt-4">
+          <PortableText value={data[0]?.description} />
+        </div>
+      </div>
+
+      {data[0]?.techDescription && (
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold">Tech Description</h2>
+          <p className="mt-2 text-lg text-muted-foreground">
+            {data[0]?.techDescription}
+          </p>
+        </div>
+      )}
+
+      {data[0]?.tags?.length > 0 && (
+        <div className="mt-6">
+          <h2 className="text-2xl font-bold">Tags</h2>
+          <div className="flex flex-wrap gap-2 mt-4">
+            {data[0]?.tags.map((tag) => (
+              <Badge key={tag} variant="secondary">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {data[0]?.showcaseVideoFile && (
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold">Showcase Video</h2>
+          <div className="mt-4">
+            <Video
+              src={getVideoUrl(data[0]?.showcaseVideoFile) ?? ""}
+              controls
+            />
+          </div>
+        </div>
+      )}
+
+      {data[0]?.siteLink && (
+        <div className="mt-12 flex justify-center">
+          <Button asChild>
+            <a
+              href={data[0]?.siteLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit Site
+            </a>
+          </Button>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default ProjectArticle;
