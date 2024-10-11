@@ -1,70 +1,59 @@
 import Image from "next/image";
-import { client, urlFor } from "./lib/sanity";
-import { simpleProjectCard } from "./lib/interface";
-import { Card, CardContent } from "../components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import { Plus } from "lucide-react";
-import { ProgrammerDetails } from "./components/programmerDetails";
-
-export const revalidate = 30; // revalidate cache every hour
-
-const fetchProjects = async () => {
-  const query = `*[_type=='project'] | order(_createdAt desc){
-    name, description, 
-      "currentSlug":slug.current,
-      siteImage
-  }`;
-
-  const data = await client.fetch(query);
-  return data;
-};
-
-export default async function Home() {
-  const data: simpleProjectCard[] = await fetchProjects();
-  console.log("data ", data);
+// import Link from "next/link";
+// import { Button } from "@/components/ui/button";
+import Footer from "./components/Footer";
+// import { msSansRetro, kodeMono } from "../styles/fonts";
+import { Typewriter } from "./components/Typewritter";
+const Home = () => {
   return (
-    <div className="container mx-auto px-4 py-10">
-      <div className="flex justify-between items-center mb-8">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button size="sm">
-              <Plus className="size-4" />
-              Create Goal 🎯
-            </Button>
-          </DialogTrigger>
-          <ProgrammerDetails />
-        </Dialog>
+    <div className="container mx-auto px-4 py-16">
+      <div className="flex flex-col items-center text-center">
+        <Image
+          src="/myPics/marceloSythLord2-removebg-preview.png"
+          alt="Profile Picture"
+          width={120}
+          height={120}
+          className="rounded-full mb-6"
+        />
+        {/* <h1 className={`text-4xl font-bold text-primary ${kodeMono.className}`}>
+          Hey, I&apos;m Marcelo
+        </h1> */}
+        <Typewriter text="Hey, I'm Marcelo" speed={50} />
+        <p className="mt-4 text-muted text-2xl">Full stack developer</p>
+        <p className="mt-2 text-muted text-xl">
+          Moved by a incessant curiosity and desire to build something{" "}
+          <span className="text-primary font-semibold animate-pulse delay-1000">
+            Great
+          </span>
+          .
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {data.map((post, idx) => {
-          return (
-            <Card
-              key={idx}
-              className="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-200 overflow-hidden items-center"
-            >
-              <Image
-                className="rounded-t-lg h-[200px] w-full object-cover"
-                height={500}
-                width={500}
-                alt=""
-                src={urlFor(post?.siteImage)?.url() ?? ""}
-              />
-              <CardContent className="flex mt-5 items-center justify-center flex-col">
-                <h3 className="text-lg">{post.name}</h3>
-                <p className="line-clamp-1 text-sm mt-2 text-gray-600 dark:text-gray-300">
-                  {post.techDescription}
-                </p>
-                <Button asChild variant="default" className="w-full">
-                  <Link href={`/project/${post.currentSlug}`}>Read More</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          );
-        })}
+      <div className="mt-16">
+        <h2 className="text-2xl font-semibold text-primary text-center">
+          Skills & Experience
+        </h2>
+        <div className="flex flex-wrap justify-center gap-6 mt-8">
+          <div className="bg-card rounded-lg p-4 shadow-md w-64">
+            <h3 className="text-xl font-semibold text-foreground">React.js</h3>
+            <p className="text-muted mt-2">5 years experience</p>
+          </div>
+          <div className="bg-card rounded-lg p-4 shadow-md w-64">
+            <h3 className="text-xl font-semibold text-foreground">Next.js</h3>
+            <p className="text-muted mt-2">3 years experience</p>
+          </div>
+          <div className="bg-card rounded-lg p-4 shadow-md w-64">
+            <h3 className="text-xl font-semibold text-foreground">
+              Tailwind CSS
+            </h3>
+            <p className="text-muted mt-2">2 years experience</p>
+          </div>
+        </div>
       </div>
+
+      <Footer />
     </div>
   );
-}
+};
+
+export default Home;

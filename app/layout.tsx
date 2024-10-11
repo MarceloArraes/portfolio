@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 import Navbar from "./components/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
+import { msSansRetro } from "../styles/fonts";
+// const Kod = Kodchasan({ weight: "300", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body /* className={inter.className} */>
+      <body /* className={msSansRetro.className} */>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

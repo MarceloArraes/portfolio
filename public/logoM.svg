@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="black" />
+
+  <!-- Neon Text -->
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="50" fill="none" stroke="cyan" stroke-width="2" stroke-linejoin="round">
+    &lt;/&gt;
+  </text>
+
+  <!-- Neon M -->
+  <text x="50%" y="80%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="30" fill="none" stroke="magenta" stroke-width="1.5" stroke-linejoin="round">
+    M
+  </text>
+
+  <!-- Glow Effect -->
+  <filter id="glow">
+    <feGaussianBlur stdDeviation="4.5" result="coloredBlur"/>
+    <feMerge>
+      <feMergeNode in="coloredBlur"/>
+      <feMergeNode in="SourceGraphic"/>
+    </feMerge>
+  </filter>
+
+  <!-- Apply Glow -->
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="50" fill="none" stroke="cyan" stroke-width="2" stroke-linejoin="round" filter="url(#glow)">
+    &lt;/&gt;
+  </text>
+  <text x="50%" y="80%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="30" fill="none" stroke="magenta" stroke-width="1.5" stroke-linejoin="round" filter="url(#glow)">
+    M
+  </text>
+</svg>
