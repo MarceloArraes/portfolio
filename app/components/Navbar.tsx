@@ -15,7 +15,7 @@ export default function Navbar() {
         alt="Marcelogo"
         width={120}
         height={120}
-        className="left-0 m-5 fixed top-0 rounded-full"
+        className="left-0 m-5 fixed top-0 rounded-full w-auto max-w-32"
       />
       <div className="fixed right-0 m-5">
         <ThemeToggle />

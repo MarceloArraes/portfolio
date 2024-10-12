@@ -3,47 +3,63 @@
 @tailwind utilities;
 @layer base {
   :root {
-    --background: 30 15% 95%; /* Soft Ivory/Beige */
-    --foreground: 210 60% 16%; /* Midnight Blue */
-    --card: 30 15% 95%; /* Soft Ivory/Beige */
-    --card-foreground: 210 60% 16%; /* Midnight Blue */
-    --popover: 30 15% 95%; /* Soft Ivory/Beige */
-    --popover-foreground: 210 60% 16%; /* Midnight Blue */
-    --primary: 145 47% 37%; /* Emerald Green */
-    --primary-foreground: 45 87% 90%; /* Champagne Gold */
-    --secondary: 210 60% 16%; /* Midnight Blue */
-    --secondary-foreground: 45 87% 90%; /* Champagne Gold */
-    --muted: 210 22% 75%; /* Light Steel Blue */
-    --muted-foreground: 210 25% 40%; /* Muted Blue */
-    --accent: 45 87% 90%; /* Champagne Gold */
-    --accent-foreground: 210 60% 16%; /* Midnight Blue */
-    --destructive: 0 60% 50%; /* Rich Red */
-    --destructive-foreground: 45 87% 90%; /* Champagne Gold */
-    --border: 145 20% 85%; /* Pale Emerald */
-    --input: 145 20% 85%; /* Pale Emerald */
-    --ring: 145 47% 37%; /* Emerald Green */
+    --font-ms-sans-serif: "ms_sans_serif", sans-serif; /* Add your custom font variable */
+    --background: 210 20% 96%; /* Soft Light Cyan */
+    --foreground: 210 60% 20%; /* Dark Cyan */
+    --card: 210 20% 95%; /* Soft Light Cyan */
+    --card-foreground: 210 60% 20%; /* Dark Cyan */
+    --popover: 210 20% 95%; /* Soft Light Cyan */
+    --popover-foreground: 210 60% 20%; /* Dark Cyan */
+    --primary: 190 60% 40%; /* Vivid Teal */
+    --primary-foreground: 0 0% 100%; /* Bright White */
+    --secondary: 190 60% 40%; /* Vivid Teal */
+    --secondary-foreground: 0 0% 100%; /* Bright White */
+    --muted: 210 40% 80%; /* Light Sky Blue */
+    --muted-foreground: 210 60% 20%; /* Dark Cyan */
+    --accent: 190 70% 70%; /* Light Teal */
+    --accent-foreground: 210 60% 20%; /* Dark Cyan */
+    --destructive: 0 80% 50%; /* Bright Red */
+    --destructive-foreground: 210 100% 100%; /* Bright White */
+    --border: 190 50% 90%; /* Pale Teal */
+    --input: 190 50% 90%; /* Pale Teal */
+    --ring: 190 60% 40%; /* Vivid Teal */
     --radius: 0.75rem; /* Default border radius */
   }
 
   .dark {
-    --background: 210 40% 10%; /* Deep Midnight Blue */
-    --foreground: 45 87% 90%; /* Champagne Gold */
-    --card: 210 40% 10%; /* Deep Midnight Blue */
-    --card-foreground: 45 87% 90%; /* Champagne Gold */
-    --popover: 210 40% 10%; /* Deep Midnight Blue */
-    --popover-foreground: 45 87% 90%; /* Champagne Gold */
-    --primary: 145 47% 37%; /* Emerald Green */
-    --primary-foreground: 45 87% 90%; /* Champagne Gold */
-    --secondary: 45 87% 90%; /* Champagne Gold */
-    --secondary-foreground: 210 60% 16%; /* Midnight Blue */
-    --muted: 210 40% 30%; /* Muted Steel Blue */
-    --muted-foreground: 145 47% 37%; /* Emerald Green */
-    --accent: 45 87% 90%; /* Champagne Gold */
-    --accent-foreground: 210 40% 10%; /* Deep Midnight Blue */
-    --destructive: 0 60% 50%; /* Rich Red */
-    --destructive-foreground: 45 87% 90%; /* Champagne Gold */
-    --border: 210 40% 30%; /* Muted Steel Blue */
-    --input: 210 40% 30%; /* Muted Steel Blue */
-    --ring: 145 47% 37%; /* Emerald Green */
+    --background: 210 20% 10%; /* Deep Midnight Cyan */
+    --foreground: 190 70% 90%; /* Bright White */
+    --card: 210 20% 10%; /* Deep Midnight Cyan */
+    --card-foreground: 190 70% 90%; /* Bright White */
+    --popover: 210 20% 10%; /* Deep Midnight Cyan */
+    --popover-foreground: 190 70% 90%; /* Bright White */
+    --primary: 190 60% 40%; /* Vivid Teal */
+    --primary-foreground: 210 20% 100%; /* Bright White */
+    --secondary: 190 70% 90%; /* Bright White */
+    --secondary-foreground: 210 60% 20%; /* Dark Cyan */
+    --muted: 210 20% 20%; /* Muted Steel Blue */
+    --muted-foreground: 190 60% 40%; /* Vivid Teal */
+    --accent: 190 70% 90%; /* Bright White */
+    --accent-foreground: 210 20% 10%; /* Deep Midnight Cyan */
+    --destructive: 0 80% 50%; /* Bright Red */
+    --destructive-foreground: 190 70% 90%; /* Bright White */
+    --border: 210 20% 20%; /* Muted Steel Blue */
+    --input: 210 20% 20%; /* Muted Steel Blue */
+    --ring: 190 60% 40%; /* Vivid Teal */
   }
+}
+@font-face {
+  font-family: "ms_sans_serif";
+  src: url("/fonts/ms_sans_serif.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ms_sans_serif";
+  src: url("/fonts/ms_sans_serif_bold.woff2") format("woff2");
+  font-weight: bold;
+  font-style: normal;
+}
+.font-ms-sans-serif {
+  font-family: var(--font-ms-sans-serif); /* Use the variable */
 }

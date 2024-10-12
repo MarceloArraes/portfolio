@@ -4,6 +4,12 @@ import Image from "next/image";
 import Footer from "./components/Footer";
 // import { msSansRetro, kodeMono } from "../styles/fonts";
 import { Typewriter } from "./components/Typewritter";
+// import { Button } from "@/components/ui/button";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+// import { Plus } from "lucide-react";
+import { ProgrammerDetails } from "./components/programmerDetails";
+import { Card } from "@/components/ui/card";
+import { ContactDialog } from "./components/ContactMe";
 const Home = () => {
   return (
     <div className="container mx-auto px-4 py-16">
@@ -30,23 +36,34 @@ const Home = () => {
       </div>
 
       <div className="mt-16">
-        <h2 className="text-2xl font-semibold text-primary text-center">
-          Skills & Experience
-        </h2>
+        <h2 className="text-2xl font-semibold text-primary text-center"></h2>
         <div className="flex flex-wrap justify-center gap-6 mt-8">
-          <div className="bg-card rounded-lg p-4 shadow-md w-64">
-            <h3 className="text-xl font-semibold text-foreground">React.js</h3>
-            <p className="text-muted mt-2">5 years experience</p>
-          </div>
-          <div className="bg-card rounded-lg p-4 shadow-md w-64">
-            <h3 className="text-xl font-semibold text-foreground">Next.js</h3>
-            <p className="text-muted mt-2">3 years experience</p>
-          </div>
+          <a href="/projects" className="bg-card rounded-lg p-4 shadow-md w-64">
+            <h3 className="text-xl font-semibold text-foreground">
+              See My Projects
+            </h3>
+            {/* <p className="text-muted mt-2">5 years experience</p> */}
+          </a>
+          <Dialog>
+            <DialogTrigger>
+              <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
+                <h3 className="text-xl font-semibold text-foreground">
+                  Contact me
+                </h3>
+
+                {/* <p className="text-muted mt-2">3 years experience</p> */}
+              </Card>
+            </DialogTrigger>
+            <ProgrammerDetails />
+          </Dialog>
+          <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
+            <ContactDialog />
+          </Card>
           <div className="bg-card rounded-lg p-4 shadow-md w-64">
             <h3 className="text-xl font-semibold text-foreground">
-              Tailwind CSS
+              See statistics
             </h3>
-            <p className="text-muted mt-2">2 years experience</p>
+            {/* <p className="text-muted mt-2">2 years experience</p> */}
           </div>
         </div>
       </div>
