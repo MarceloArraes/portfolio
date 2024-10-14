@@ -3,7 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 
 import Navbar from "./components/Navbar";
-import { msSansRetro } from "../styles/fonts";
+// import { msSansRetro } from "../styles/fonts";
 import { Toaster } from "sonner";
 // const Kod = Kodchasan({ weight: "300", subsets: ["latin"] });
 

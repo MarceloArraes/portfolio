@@ -36,7 +36,7 @@ async function ProgrammerDetails() {
   }
   return (
     <DialogContent>
-      <div className="flex flex-col gap-6 h-full">
+      <div className="flex flex-col gap-6 min-h-full">
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <DialogClose>
@@ -72,7 +72,7 @@ async function ProgrammerDetails() {
                   />
                 </div>
               )}
-              {profile.profileImage2 && (
+              {/* {profile.profileImage2 && (
                 <div>
                   <h3 className="font-semibold">Profile Image 2:</h3>
                   <Image
@@ -104,7 +104,7 @@ async function ProgrammerDetails() {
                     alt="Extra Image"
                   />
                 </div>
-              )}
+              )} */}
               <div>
                 <h3 className="font-semibold">Frontend Techs:</h3>
                 <p className="text-gray-700">
