@@ -1,151 +1,180 @@
 import { X } from "lucide-react";
-// import {
-//   RadioGroup,
-//   RadioGroupIndicator,
-//   RadioGroupItem,
-// } from "@/components/ui/radio-group";
+import { client, urlFor } from "../lib/sanity";
 import {
   DialogClose,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-// import { Input } from "@/components/ui/input";
-// import { Label } from "@/components/ui/label";
-// import { z } from "zod";
-// import { Controller, useForm } from "react-hook-form";
-// import { zodResolver } from "@hookform/resolvers/zod";
-// import { programmerDetails } from "../http/create-goal";
-// import { toast } from "sonner";
-// import { useQueryClient } from "@tanstack/react-query";
-// import { Button } from "@/components/ui/button";
+import { Profile } from "../lib/interface";
+import { PortableText } from "@portabletext/react";
+import Image from "next/image";
 
-// const programmerDetailsSchema = z.object({
-//   title: z.string().min(1, "Inform the new activity you want to track"),
-//   desiredWeeklyFrequency: z.coerce.number().min(1).max(7),
-// });
+const fetchProfile = async () => {
+  const query = `*[_type=='profile']`;
 
-// type ProgrammerDetailsSchema = z.infer<typeof programmerDetailsSchema>;
+  try {
+    const data = await client.fetch(query);
+    console.log("Fetched profile data:", data); // Log the fetched data
+    return data;
+  } catch (error) {
+    console.error("Error fetching profile data:", error);
+    return [];
+  }
+};
 
-export function ProgrammerDetails() {
-  // const queryClient = useQueryClient();
+async function ProgrammerDetails() {
+  const data: Profile[] = await fetchProfile();
 
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  //   control,
-  //   reset,
-  // } = useForm<ProgrammerDetailsSchema>({
-  //   resolver: zodResolver(programmerDetailsSchema),
-  // });
-
-  // async function handleProgrammerDetails({
-  //   title,
-  //   desiredWeeklyFrequency,
-  // }: ProgrammerDetailsSchema) {
-  //   try {
-  //     await programmerDetails({
-  //       title,
-  //       desiredWeeklyFrequency,
-  //     });
-
-  //     reset();
-
-  //     queryClient.invalidateQueries({ queryKey: ["pending-goals"] });
-  //     queryClient.invalidateQueries({ queryKey: ["summary"] });
-
-  //     toast.success("Goal create successful");
-  //   } catch {
-  //     toast.error("Error creating goal!");
-  //   }
-  // }
-
+  console.log("profile data", data);
+  if (!data || data.length === 0) {
+    return (
+      <DialogContent>
+        <p>No profiles found.</p>
+      </DialogContent>
+    );
+  }
   return (
     <DialogContent>
       <div className="flex flex-col gap-6 h-full">
         <div className="space-y-3">
           <div className="flex items-center justify-between">
-            <DialogTitle>Create Goal 🎯</DialogTitle>
-
             <DialogClose>
               <X className="size-5 text-zinc-600" />
             </DialogClose>
           </div>
 
-          <DialogDescription>
-            Add activities that you are willing to add to your weekly routine.
-          </DialogDescription>
-        </div>
+          {/*  */}
+          {data.map((profile) => (
+            <div key={profile._id} className="space-y-2">
+              <DialogTitle>{profile.name}</DialogTitle>
 
-        {/* <form
-          onSubmit={handleSubmit(handleProgrammerDetails)}
-          className="flex-1 flex flex-col justify-between"
-        >
-          <div className="space-y-6">
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="title">What is the routine activity?</Label>
+              <h2 className="text-lg font-bold"></h2>
+              <div>
+                <h3 className="font-semibold">
+                  <DialogDescription>Description:</DialogDescription>
+                </h3>
 
-              <Input
-                id="title"
-                autoFocus
-                placeholder="Praticar exercícios, meditar, etc..."
-                {...register("title")}
-              />
-
-              {errors.title && (
-                <p className="text-sm text-red-400">{errors.title.message}</p>
+                <PortableText value={profile.description} />
+              </div>
+              <div>
+                <h3 className="font-semibold">Quote:</h3>
+                <p className="text-gray-700">{profile.quote}</p>
+              </div>
+              {profile.profileImage1 && (
+                <div>
+                  <h3 className="font-semibold">Profile Image 1:</h3>
+                  <Image
+                    src={urlFor(profile?.profileImage1)?.url() ?? ""}
+                    alt="Profile Image 1"
+                    width={150}
+                    height={150}
+                  />
+                </div>
               )}
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <Label htmlFor="desiredWeeklyFrequency">
-                How many times per week?
-              </Label>
-
-              <Controller
-                control={control}
-                name="desiredWeeklyFrequency"
-                defaultValue={5}
-                render={({ field }) => {
-                  return (
-                    <RadioGroup
-                      value={String(field.value)}
-                      onValueChange={field.onChange}
+              {profile.profileImage2 && (
+                <div>
+                  <h3 className="font-semibold">Profile Image 2:</h3>
+                  <Image
+                    width={150}
+                    height={150}
+                    src={urlFor(profile.profileImage2.asset._ref)?.url() ?? ""}
+                    alt="Profile Image 2"
+                  />
+                </div>
+              )}
+              {profile.profileImage3 && (
+                <div>
+                  <h3 className="font-semibold">Profile Image 3:</h3>
+                  <Image
+                    width={150}
+                    height={150}
+                    src={urlFor(profile.profileImage3.asset._ref)?.url() ?? ""}
+                    alt="Profile Image 3"
+                  />
+                </div>
+              )}
+              {profile.extraImage && (
+                <div>
+                  <h3 className="font-semibold">Extra Image:</h3>
+                  <Image
+                    width={150}
+                    height={150}
+                    src={urlFor(profile.extraImage.asset._ref)?.url() ?? ""}
+                    alt="Extra Image"
+                  />
+                </div>
+              )}
+              <div>
+                <h3 className="font-semibold">Frontend Techs:</h3>
+                <p className="text-gray-700">
+                  {profile.frontendTechs?.join(", ")}
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold">Backend Techs:</h3>
+                <p className="text-gray-700">
+                  {profile.backendTechs?.join(", ")}
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold">General Techs:</h3>
+                <p className="text-gray-700">
+                  {profile.generalTechs?.join(", ")}
+                </p>
+              </div>
+              <div>
+                <h3 className="font-semibold">Links:</h3>
+                {profile.githubProfile && (
+                  <p>
+                    GitHub:{" "}
+                    <a href={profile.githubProfile} className="text-blue-500">
+                      {profile.githubProfile}
+                    </a>
+                  </p>
+                )}
+                {profile.linkedinProfile && (
+                  <p>
+                    LinkedIn:{" "}
+                    <a href={profile.linkedinProfile} className="text-blue-500">
+                      {profile.linkedinProfile}
+                    </a>
+                  </p>
+                )}
+                {profile.instagramProfile && (
+                  <p>
+                    Instagram:{" "}
+                    <a
+                      href={profile.instagramProfile}
+                      className="text-blue-500"
                     >
-                      {Array.from({ length: 7 }).map((_, i) => {
-                        const frequency = String(i + 1);
-
-                        return (
-                          <RadioGroupItem key={i} value={frequency}>
-                            <RadioGroupIndicator />
-                            <span className="text-zinc-300 text-sm font-medium leading-none">
-                              {frequency}x on the week
-                            </span>
-                            <span className="text-lg leading-none">🥱</span>
-                          </RadioGroupItem>
-                        );
-                      })}
-                    </RadioGroup>
-                  );
-                }}
-              />
+                      {profile.instagramProfile}
+                    </a>
+                  </p>
+                )}
+                {profile.portfolioProfile && (
+                  <p>
+                    Portfolio:{" "}
+                    <a
+                      href={profile.portfolioProfile}
+                      className="text-blue-500"
+                    >
+                      {profile.portfolioProfile}
+                    </a>
+                  </p>
+                )}
+              </div>
+              <div>
+                <h3 className="font-semibold">Active:</h3>
+                <p className="text-gray-700">{profile.active ? "Yes" : "No"}</p>
+              </div>
             </div>
-          </div>
-
-          <div className="flex items-center gap-3 mt-auto">
-            <DialogClose asChild>
-              <Button variant="secondary" className="flex-1">
-                Close
-              </Button>
-            </DialogClose>
-
-            <Button type="submit" className="flex-1">
-              Save
-            </Button>
-          </div>
-        </form> */}
+          ))}
+          {/* </DialogDescription> */}
+        </div>
       </div>
     </DialogContent>
   );
 }
+
+export default ProgrammerDetails;

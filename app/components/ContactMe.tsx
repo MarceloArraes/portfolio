@@ -12,6 +12,7 @@ import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 import { toast } from "sonner";
+import { Card } from "@/components/ui/card";
 
 export const ContactDialog = () => {
   const [open, setOpen] = useState(false);
@@ -43,16 +44,17 @@ export const ContactDialog = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline">Contact Me</Button>
+      <DialogTrigger className="cursor-pointer">
+        <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
+          <h3 className="text-xl font-semibold text-foreground">Contact Me</h3>
+        </Card>
       </DialogTrigger>
-
       {/* <Dialog.Overlay className="fixed inset-0 bg-black/50" /> */}
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Contact Me</DialogTitle>
           <DialogDescription>
-            Feel free to leave your message and I&apos;ll get back to you.
+            Leave any message and I&apos;ll get back to you.
           </DialogDescription>
         </DialogHeader>
         <form

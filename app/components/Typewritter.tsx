@@ -1,6 +1,6 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { msSansRetro, kodeMono } from "../../styles/fonts";
+import React, { useState, useEffect, useCallback } from "react";
+import { kodeMono } from "../../styles/fonts";
 
 interface TypewriterProps {
   text: string;
@@ -13,20 +13,29 @@ export const Typewriter: React.FC<TypewriterProps> = ({
 }) => {
   const [displayedText, setDisplayedText] = useState("");
 
-  useEffect(() => {
-    let index = 0;
-    const intervalId = setInterval(() => {
-      setDisplayedText((prev) => prev + text.charAt(index));
-      index++;
-      if (index === text.length) {
-        clearInterval(intervalId);
+  const typeNextChar = useCallback(() => {
+    setDisplayedText((prev) => {
+      if (prev.length < text.length) {
+        const nextChar = text[prev.length];
+
+        return prev + nextChar;
       }
+      return prev;
+    });
+  }, [text]);
+
+  useEffect(() => {
+    console.log("Initial text:", text);
+    setDisplayedText("");
+
+    const intervalId = setInterval(() => {
+      typeNextChar();
     }, speed);
 
-    return () => clearInterval(intervalId); // Cleanup on unmount
-  }, [text, speed]);
-
-  //   return <>{displayedText}</>;
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [text, speed, typeNextChar]);
 
   return (
     <h1 className={`text-4xl font-bold text-primary ${kodeMono.className}`}>

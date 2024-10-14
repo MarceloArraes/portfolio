@@ -48,7 +48,7 @@
     --ring: 190 60% 40%; /* Vivid Teal */
   }
 }
-@font-face {
+/* @font-face {
   font-family: "ms_sans_serif";
   src: url("/fonts/ms_sans_serif.woff2") format("woff2");
   font-weight: 400;
@@ -61,5 +61,6 @@
   font-style: normal;
 }
 .font-ms-sans-serif {
-  font-family: var(--font-ms-sans-serif); /* Use the variable */
-}
+  font-family: var(--font-ms-sans-serif);
+  
+} */

@@ -18,9 +18,9 @@ const config = {
       },
     },
     extend: {
-      fontFamily: {
-        "ms-sans-serif": ["ms_sans_serif", "sans-serif"],
-      },
+      // fontFamily: {
+      //   "ms-sans-serif": ["ms_sans_serif", "sans-serif"],
+      // },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

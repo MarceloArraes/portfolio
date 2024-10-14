@@ -7,9 +7,10 @@ import { Typewriter } from "./components/Typewritter";
 // import { Button } from "@/components/ui/button";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 // import { Plus } from "lucide-react";
-import { ProgrammerDetails } from "./components/programmerDetails";
+import ProgrammerDetails from "./components/programmerDetails";
 import { Card } from "@/components/ui/card";
 import { ContactDialog } from "./components/ContactMe";
+
 const Home = () => {
   return (
     <div className="container mx-auto px-4 py-16">
@@ -24,7 +25,7 @@ const Home = () => {
         {/* <h1 className={`text-4xl font-bold text-primary ${kodeMono.className}`}>
           Hey, I&apos;m Marcelo
         </h1> */}
-        <Typewriter text="Hey, I'm Marcelo" speed={50} />
+        <Typewriter text="Hey, I'm Marcelo" speed={200} />
         <p className="mt-4 text-muted text-2xl">Full stack developer</p>
         <p className="mt-2 text-muted text-xl">
           Moved by a incessant curiosity and desire to build something{" "}
@@ -48,17 +49,15 @@ const Home = () => {
             <DialogTrigger>
               <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
                 <h3 className="text-xl font-semibold text-foreground">
-                  Contact me
+                  My profile
                 </h3>
-
-                {/* <p className="text-muted mt-2">3 years experience</p> */}
               </Card>
             </DialogTrigger>
             <ProgrammerDetails />
           </Dialog>
-          <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
-            <ContactDialog />
-          </Card>
+          {/* <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left"> */}
+          <ContactDialog />
+          {/* </Card> */}
           <div className="bg-card rounded-lg p-4 shadow-md w-64">
             <h3 className="text-xl font-semibold text-foreground">
               See statistics

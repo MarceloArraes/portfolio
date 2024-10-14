@@ -22,3 +22,26 @@ export interface simpleProjectCard {
   active?: boolean;
   tags: string[]; // Tags are an array of strings
 }
+
+export interface Profile {
+  _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  _type: "profile";
+  name: string;
+  description: any;
+  quote: string;
+  profileImage1?: Asset;
+  profileImage2?: Asset;
+  profileImage3?: Asset;
+  extraImage?: Asset;
+  frontendTechs?: string[];
+  backendTechs?: string[];
+  generalTechs?: string[];
+  githubProfile?: string;
+  linkedinProfile?: string;
+  instagramProfile?: string;
+  portfolioProfile?: string;
+  active: boolean;
+}
