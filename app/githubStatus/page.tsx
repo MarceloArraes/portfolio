@@ -68,8 +68,8 @@ const fetchContributionData = async () => {
   });
 
   const json = await response.json();
-  console.log("json user", json.data.user);
-  console.log("json viewer", json.data.viewer);
+  //   console.log("json user", json.data.user);
+  //   console.log("json viewer", json.data.viewer);
   return {
     contributionData:
       json.data.user.contributionsCollection.contributionCalendar,
