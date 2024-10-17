@@ -58,12 +58,15 @@ const Home = () => {
           {/* <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left"> */}
           <ContactDialog />
           {/* </Card> */}
-          <div className="bg-card rounded-lg p-4 shadow-md w-64">
+          <a
+            href="/githubStatus"
+            className="bg-card rounded-lg p-4 shadow-md w-64"
+          >
             <h3 className="text-xl font-semibold text-foreground">
-              See statistics
+              See Github Statistics
             </h3>
             {/* <p className="text-muted mt-2">2 years experience</p> */}
-          </div>
+          </a>
         </div>
       </div>
 

@@ -45,3 +45,16 @@ export interface Profile {
   portfolioProfile?: string;
   active: boolean;
 }
+
+interface ContributionDay {
+  date: string;
+  contributionCount: number;
+}
+
+export interface WeekContribution {
+  contributionDays: ContributionDay[];
+}
+export interface GithubContributions {
+  totalContributions: number;
+  weeks: WeekContribution[];
+}

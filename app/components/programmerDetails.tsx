@@ -15,7 +15,6 @@ const fetchProfile = async () => {
 
   try {
     const data = await client.fetch(query);
-    console.log("Fetched profile data:", data); // Log the fetched data
     return data;
   } catch (error) {
     console.error("Error fetching profile data:", error);
@@ -25,8 +24,7 @@ const fetchProfile = async () => {
 
 async function ProgrammerDetails() {
   const data: Profile[] = await fetchProfile();
-
-  console.log("profile data", data);
+  // console.log("profile data", data);
   if (!data || data.length === 0) {
     return (
       <DialogContent>
@@ -43,27 +41,10 @@ async function ProgrammerDetails() {
               <X className="size-5 text-zinc-600" />
             </DialogClose>
           </div>
-
-          {/*  */}
           {data.map((profile) => (
             <div key={profile._id} className="space-y-2">
-              <DialogTitle>{profile.name}</DialogTitle>
-
-              <h2 className="text-lg font-bold"></h2>
-              <div>
-                <h3 className="font-semibold">
-                  <DialogDescription>Description:</DialogDescription>
-                </h3>
-
-                <PortableText value={profile.description} />
-              </div>
-              <div>
-                <h3 className="font-semibold">Quote:</h3>
-                <p className="text-gray-700">{profile.quote}</p>
-              </div>
               {profile.profileImage1 && (
                 <div>
-                  <h3 className="font-semibold">Profile Image 1:</h3>
                   <Image
                     src={urlFor(profile?.profileImage1)?.url() ?? ""}
                     alt="Profile Image 1"
@@ -72,6 +53,18 @@ async function ProgrammerDetails() {
                   />
                 </div>
               )}
+              <DialogTitle>{profile.name}</DialogTitle>
+
+              <h2 className="text-lg font-bold"></h2>
+              <div>
+                <h3 className="font-semibold"></h3>
+
+                <PortableText value={profile.description} />
+              </div>
+              <div>
+                <DialogDescription>{profile.quote}</DialogDescription>
+              </div>
+
               {/* {profile.profileImage2 && (
                 <div>
                   <h3 className="font-semibold">Profile Image 2:</h3>
