@@ -65,8 +65,8 @@ const fetchContributionData = async (username: string) => {
   };
 };
 
-const GitHubStatusPage = () => {
-  const [username, setUsername] = useState("marceloarraes"); // Default username
+const GithubAdversary = () => {
+  const [username, setUsername] = useState(""); // Default username
 
   // Fetch contribution data using react-query
   const { data, isLoading, error } = useQuery(
@@ -87,12 +87,23 @@ const GitHubStatusPage = () => {
         // console.log("data", data);
         return response; // Return the relevant data
       },
+      enabled: !!username,
     } // Ensure the query is only enabled if a username is provided
   );
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
   console.log("data, ", data);
+  if (!data) {
+    return (
+      <input
+        type="text"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Enter GitHub username"
+      />
+    );
+  }
   const { contributionData, viewerData } = data;
   const joinedDate = new Date(viewerData.createdAt);
   const formattedJoinDate = formatDistanceToNow(joinedDate, {
@@ -120,4 +131,4 @@ const GitHubStatusPage = () => {
   );
 };
 
-export default GitHubStatusPage;
+export default GithubAdversary;

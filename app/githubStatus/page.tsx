@@ -12,6 +12,7 @@ import {
   ReactPortal,
   AwaitedReactNode,
 } from "react";
+import GithubAdversary from "../components/GithubAdversary";
 
 const fetchContributionData = async () => {
   const query = `
@@ -83,7 +84,6 @@ const GitHubStatusPage = async () => {
   const formattedJoinDate = formatDistanceToNow(joinedDate, {
     addSuffix: true,
   });
-
   return (
     <div className="container mx-auto p-4 space-y-6 max-w-4xl">
       {/* Profile Header */}
@@ -94,7 +94,7 @@ const GitHubStatusPage = async () => {
               <AvatarImage src={viewerData.avatarUrl} alt={viewerData.name} />
               <AvatarFallback>{viewerData.name.slice(0, 2)}</AvatarFallback>
             </Avatar>
-
+            <GithubAdversary />
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-2xl font-bold">{viewerData.name}</h1>
               <p className="text-muted-foreground mt-1">{viewerData.bio}</p>
