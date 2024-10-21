@@ -1,4 +1,5 @@
 "use client";
+import { Input } from "@/components/ui/input";
 import { useQuery } from "@tanstack/react-query";
 import { formatDistanceToNow } from "date-fns";
 import { FormEvent, FormEventHandler, SyntheticEvent, useState } from "react";
@@ -55,13 +56,19 @@ const fetchContributionData = async (username: string) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ query }),
-  });
+  })
+    .then((res) => {
+      return res.json();
+    })
+    .catch((err) => {
+      throw new Error(err);
+    });
 
-  const json = await response.json();
+  // const json = await response.json();
   return {
     contributionData:
-      json.data.user.contributionsCollection.contributionCalendar,
-    viewerData: json.data.viewer,
+      response.data.user.contributionsCollection.contributionCalendar,
+    viewerData: response.data.viewer,
   };
 };
 
@@ -96,9 +103,10 @@ const GithubAdversary = () => {
     },
     enabled: !!username,
   });
+  const hasError = error && !isLoading;
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  // if (error) return <div>Error: {error.message}</div>;
   console.log("data3, ", data);
 
   // const { contributionData, viewerData } = data;
@@ -111,7 +119,7 @@ const GithubAdversary = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmitGithubUsername}>
+      <form onSubmit={onSubmitGithubUsername} className="flex-col ">
         {data && (
           <>
             <h1>GitHub Status Page for {username}</h1>
@@ -120,14 +128,14 @@ const GithubAdversary = () => {
             <br />
           </>
         )}
-
-        <input
+        <Input
           type="text"
           name="username"
           defaultValue={username ?? ""}
-          // onChange={(e) => setUsername(e.target.value)}
+          className={`border p-2 rounded ${hasError ? "outline-red-600 border-red-600" : "border-gray-300"}`}
           placeholder="Enter GitHub username"
         />
+        {error && <span>Could not find {username}</span>}
       </form>
     </div>
   );
