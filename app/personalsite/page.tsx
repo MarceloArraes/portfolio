@@ -92,7 +92,8 @@ const GitHubStatusPage = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-  console.log("data, ", data);
+  console.log("data2, ", data);
+  if (!data) return;
   const { contributionData, viewerData } = data;
   const joinedDate = new Date(viewerData.createdAt);
   const formattedJoinDate = formatDistanceToNow(joinedDate, {

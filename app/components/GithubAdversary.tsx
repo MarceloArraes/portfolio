@@ -1,7 +1,7 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import { formatDistanceToNow } from "date-fns";
-import { useState } from "react";
+import { FormEvent, FormEventHandler, SyntheticEvent, useState } from "react";
 
 const fetchContributionData = async (username: string) => {
   const query = `
@@ -66,67 +66,69 @@ const fetchContributionData = async (username: string) => {
 };
 
 const GithubAdversary = () => {
-  const [username, setUsername] = useState(""); // Default username
+  const [username, setUsername] = useState("");
+  const onSubmitGithubUsername = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const form = event.target as HTMLFormElement;
+    const input = form.elements.namedItem("username") as HTMLInputElement;
 
-  // Fetch contribution data using react-query
-  const { data, isLoading, error } = useQuery(
-    {
-      queryKey: ["contributions", username],
-      queryFn: async () => {
-        const variables = {
-          login: username,
-          after: null, // You can dynamically update this if needed
-          includeMergedPullRequests: true, // Set based on your conditions
-          includeDiscussions: false, // Set based on your conditions
-          includeDiscussionsAnswers: false, // Set based on your conditions
-        };
+    console.log("input value", input.value);
+    setUsername(input.value);
+  };
 
-        const response = await fetchContributionData(username);
-        // console.log("response", response);
-        // const data = await response.json(); // Make sure to parse the response JSON
-        // console.log("data", data);
-        return response; // Return the relevant data
-      },
-      enabled: !!username,
-    } // Ensure the query is only enabled if a username is provided
-  );
+  const { data, isLoading, error } = useQuery({
+    queryKey: ["contributions", username],
+    queryFn: async () => {
+      // const variables = {
+      //   login: username,
+      //   after: null, // You can dynamically update this if needed
+      //   includeMergedPullRequests: true, // Set based on your conditions
+      //   includeDiscussions: false, // Set based on your conditions
+      //   includeDiscussionsAnswers: false, // Set based on your conditions
+      // };
+
+      const response = await fetchContributionData(username);
+      // console.log("response", response);
+      // const data = await response.json(); // Make sure to parse the response JSON
+      // console.log("data", data);
+      return response;
+    },
+    enabled: !!username,
+  });
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
-  console.log("data, ", data);
-  if (!data) {
-    return (
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Enter GitHub username"
-      />
-    );
-  }
-  const { contributionData, viewerData } = data;
-  const joinedDate = new Date(viewerData.createdAt);
+  console.log("data3, ", data);
+
+  // const { contributionData, viewerData } = data;
+  const contributionData = data?.contributionData;
+  const viewerData = data?.viewerData;
+  const joinedDate = new Date(viewerData?.createdAt ?? null);
   const formattedJoinDate = formatDistanceToNow(joinedDate, {
     addSuffix: true,
   });
 
   return (
     <div>
-      <h1>GitHub Status Page for {username}</h1>
-      <p>Joined GitHub {formattedJoinDate}</p>
-      <p>Total Contributions: {contributionData.totalContributions}</p>
+      <form onSubmit={onSubmitGithubUsername}>
+        {data && (
+          <>
+            <h1>GitHub Status Page for {username}</h1>
+            <p>Joined GitHub {formattedJoinDate}</p>
+            <p>Total Contributions: {contributionData.totalContributions}</p>
+            <br />
+          </>
+        )}
 
-      <div>
-        {/* Input for dynamically changing username */}
         <input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          name="username"
+          defaultValue={username ?? ""}
+          // onChange={(e) => setUsername(e.target.value)}
           placeholder="Enter GitHub username"
         />
-      </div>
-
-      {/* Render other data as needed */}
+      </form>
     </div>
   );
 };
