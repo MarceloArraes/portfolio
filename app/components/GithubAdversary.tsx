@@ -72,19 +72,8 @@ const fetchContributionData = async (username: string) => {
   };
 };
 
-const GithubAdversary = () => {
-  const [username, setUsername] = useState("");
-  const onSubmitGithubUsername = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const form = event.target as HTMLFormElement;
-    const input = form.elements.namedItem("username") as HTMLInputElement;
-
-    console.log("input value", input.value);
-    setUsername(input.value);
-  };
-
-  const { data, isLoading, error } = useQuery({
+export const useGithubAdversaryStatus = (username: string) => {
+  return useQuery({
     queryKey: ["contributions", username],
     queryFn: async () => {
       // const variables = {
@@ -103,6 +92,56 @@ const GithubAdversary = () => {
     },
     enabled: !!username,
   });
+};
+
+interface GithubUsernameFormProps {
+  username: string;
+  setUsername: (username: string) => void;
+  hasError: boolean;
+}
+
+export const GithubUsernameForm = ({
+  username,
+  setUsername,
+  hasError,
+}: GithubUsernameFormProps) => {
+  const onSubmitGithubUsername = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const form = event.target as HTMLFormElement;
+    const input = form.elements.namedItem("username") as HTMLInputElement;
+
+    console.log("input value", input.value);
+    setUsername(input.value);
+  };
+
+  return (
+    <form onSubmit={onSubmitGithubUsername} className="flex-col ">
+      <Input
+        type="text"
+        name="username"
+        defaultValue={username ?? ""}
+        className={`border p-2 rounded ${hasError ? "outline-red-600 border-red-600" : "border-gray-300"}`}
+        placeholder="Enter GitHub username"
+      />
+      {hasError && <span>Could not find {username}</span>}
+    </form>
+  );
+};
+
+const GithubAdversary = () => {
+  const [username, setUsername] = useState("");
+  // const onSubmitGithubUsername = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault();
+  //   event.stopPropagation();
+  //   const form = event.target as HTMLFormElement;
+  //   const input = form.elements.namedItem("username") as HTMLInputElement;
+
+  //   console.log("input value", input.value);
+  //   setUsername(input.value);
+  // };
+
+  const { data, isLoading, error } = useGithubAdversaryStatus(username);
   const hasError = error && !isLoading;
 
   if (isLoading) return <div>Loading...</div>;
@@ -119,15 +158,15 @@ const GithubAdversary = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmitGithubUsername} className="flex-col ">
-        {data && (
-          <>
-            <h1>GitHub Status Page for {username}</h1>
-            <p>Joined GitHub {formattedJoinDate}</p>
-            <p>Total Contributions: {contributionData.totalContributions}</p>
-            <br />
-          </>
-        )}
+      {data && (
+        <>
+          <h1>GitHub Status Page for {username}</h1>
+          <p>Joined GitHub {formattedJoinDate}</p>
+          <p>Total Contributions: {contributionData.totalContributions}</p>
+          <br />
+        </>
+      )}
+      {/* <form onSubmit={onSubmitGithubUsername} className="flex-col ">
         <Input
           type="text"
           name="username"
@@ -136,7 +175,12 @@ const GithubAdversary = () => {
           placeholder="Enter GitHub username"
         />
         {error && <span>Could not find {username}</span>}
-      </form>
+      </form> */}
+      <GithubUsernameForm
+        username={username}
+        setUsername={setUsername}
+        hasError={hasError}
+      />
     </div>
   );
 };

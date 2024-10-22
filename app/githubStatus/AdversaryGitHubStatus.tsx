@@ -1,89 +1,66 @@
-import { GithubStatus } from "./GithubStatus";
+"use client";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
+import { MapPin, Calendar, Star, GitFork } from "lucide-react";
+import {
+  ReactElement,
+  JSXElementConstructor,
+  ReactNode,
+  ReactPortal,
+  AwaitedReactNode,
+  Key,
+  useState,
+} from "react";
+import GithubAdversary, {
+  GithubUsernameForm,
+  useGithubAdversaryStatus,
+} from "../components/GithubAdversary";
+import { HeatMap } from "../components/HeatMap";
+import { formatDistanceToNow } from "date-fns";
 import { ContributionsAndViewerData } from "../lib/interface";
 
-const fetchContributionData = async () => {
-  const query = `
-    {
-      user(login: "marceloarraes") {
-        contributionsCollection {
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                date
-                contributionCount
-              }
-            }
-          }
-        }
-      }
-      viewer {
-        url
-        name
-        avatarUrl
-        bio
-        createdAt
-        location
-        status {
-          id
-        }
-        pinnedItems(first: 6) {
-          nodes {
-            ... on Repository {
-              id
-              name
-              description
-              url
-              stargazerCount
-              forkCount
-              primaryLanguage {
-                name
-                color
-              }
-            }
-          }
-        }
-      }
-    }`;
+interface GithubStatusProps extends ContributionsAndViewerData {}
 
-  const response = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query }),
-  });
-
-  const json = await response.json();
-  //   console.log("json user", json.data.user);
-  //   console.log("json viewer", json.data.viewer);
-  return {
-    contributionData:
-      json.data.user.contributionsCollection.contributionCalendar,
-    viewerData: json.data.viewer,
-  } as ContributionsAndViewerData;
+export const AdversaryGitHubStatus = () => {
+  const [username, setUsername] = useState<string>("");
+  const { data, isLoading, error } = useGithubAdversaryStatus(username);
+  const hasError = error && !isLoading;
+  console.log("AdversaryGitHubStatus data", data);
+  return (
+    <>
+      <GithubUsernameForm
+        username={username}
+        setUsername={setUsername}
+        hasError={!!hasError}
+      />
+      <AdversaryStatus
+        contributionData={data?.contributionData}
+        viewerData={data?.viewerData}
+      />
+    </>
+  );
 };
 
-const GitHubStatusPage = async () => {
-  const { contributionData, viewerData } = await fetchContributionData();
-  // console.log("contributionData, viewerData", contributionData, viewerData);
-  // console.log(" viewerData", viewerData.pinnedItems.nodes);
+const AdversaryStatus = ({
+  contributionData,
+  viewerData,
+}: GithubStatusProps) => {
+  if (!contributionData || !viewerData) return;
+  const joinedDate = new Date(viewerData.createdAt);
+  const formattedJoinDate = formatDistanceToNow(joinedDate, {
+    addSuffix: true,
+  });
+
   return (
-    <div className="container mx-auto p-4 space-y-6 max-w-4xl">
-      {/* Profile Header */}
-      <GithubStatus
-        contributionData={contributionData}
-        viewerData={viewerData}
-      />
-      {/* <Card className="w-full">
+    <>
+      <Card className="w-full">
         <CardContent className="pt-6">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <Avatar className="w-32 h-32">
               <AvatarImage src={viewerData.avatarUrl} alt={viewerData.name} />
               <AvatarFallback>{viewerData.name.slice(0, 2)}</AvatarFallback>
             </Avatar>
-            <GithubAdversary />
+
             <div className="flex-1 text-center md:text-left">
               <h1 className="text-2xl font-bold">{viewerData.name}</h1>
               <p className="text-muted-foreground mt-1">{viewerData.bio}</p>
@@ -103,6 +80,7 @@ const GitHubStatusPage = async () => {
         </CardContent>
       </Card>
 
+      {/* Contributions Section */}
       <Card>
         <CardHeader>
           <CardTitle>Contributions</CardTitle>
@@ -117,6 +95,7 @@ const GitHubStatusPage = async () => {
         </CardContent>
       </Card>
 
+      {/* Pinned Repositories */}
       <Card>
         <CardHeader>
           <CardTitle>Pinned Repositories</CardTitle>
@@ -230,9 +209,7 @@ const GitHubStatusPage = async () => {
             )}
           </div>
         </CardContent>
-      </Card> */}
-    </div>
+      </Card>
+    </>
   );
 };
-
-export default GitHubStatusPage;

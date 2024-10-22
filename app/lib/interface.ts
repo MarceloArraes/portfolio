@@ -46,6 +46,34 @@ export interface Profile {
   active: boolean;
 }
 
+interface UserProfile {
+  url: string;
+  name: string;
+  avatarUrl: string;
+  bio: string;
+  createdAt: string;
+  location: string;
+  status: {
+    id: string;
+  };
+  pinnedItems: {
+    nodes: Array<PinnedItem>;
+  };
+}
+
+interface PinnedItem {
+  id: string;
+  name: string;
+  description: string | null;
+  url: string;
+  stargazerCount: number;
+  forkCount: number;
+  primaryLanguage: {
+    name: string;
+    color: string;
+  };
+}
+
 interface ContributionDay {
   date: string;
   contributionCount: number;
@@ -57,4 +85,9 @@ export interface WeekContribution {
 export interface GithubContributions {
   totalContributions: number;
   weeks: WeekContribution[];
+}
+
+export interface ContributionsAndViewerData {
+  contributionData: GithubContributions;
+  viewerData: UserProfile;
 }
