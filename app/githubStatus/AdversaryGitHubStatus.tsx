@@ -58,7 +58,6 @@ const AdversaryStatus = ({
   const formattedJoinDate = formatDistanceToNow(joinedDate, {
     addSuffix: true,
   });
-  console.log("error? ", viewerData);
   return (
     <>
       <Card className="w-full">
