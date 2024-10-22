@@ -11,23 +11,31 @@ import {
   Key,
   useState,
 } from "react";
-import GithubAdversary, {
+import {
   GithubUsernameForm,
   useGithubAdversaryStatus,
 } from "../components/GithubAdversary";
 import { HeatMap } from "../components/HeatMap";
 import { formatDistanceToNow } from "date-fns";
 import { ContributionsAndViewerData } from "../lib/interface";
+import { useQueryClient } from "@tanstack/react-query";
+import { Button } from "@/components/ui/button";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
-
 export const AdversaryGitHubStatus = () => {
+  const queryClient = useQueryClient();
   const [username, setUsername] = useState<string>("");
   const { data, isLoading, error } = useGithubAdversaryStatus(username);
   const hasError = error && !isLoading;
   console.log("AdversaryGitHubStatus data", data);
+
+  const cancelQuery = () => {
+    queryClient.cancelQueries({ queryKey: ["username"] });
+  };
+
   return (
-    <>
+    <div className="flex flex-1 flex-col">
+      <Button onClick={cancelQuery}>Cancel Query</Button>
       <GithubUsernameForm
         username={username}
         setUsername={setUsername}
@@ -37,7 +45,7 @@ export const AdversaryGitHubStatus = () => {
         contributionData={data?.contributionData}
         viewerData={data?.viewerData}
       />
-    </>
+    </div>
   );
 };
 

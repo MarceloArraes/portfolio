@@ -8,19 +8,6 @@ const fetchContributionData = async (username: string) => {
   const query = `
     {
       user(login: "${username}") {
-        contributionsCollection {
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                date
-                contributionCount
-              }
-            }
-          }
-        }
-      }
-      viewer {
         url
         name
         avatarUrl
@@ -46,7 +33,19 @@ const fetchContributionData = async (username: string) => {
             }
           }
         }
+        contributionsCollection {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
+        }
       }
+      
     }`;
 
   const response = await fetch("https://api.github.com/graphql", {
@@ -68,7 +67,7 @@ const fetchContributionData = async (username: string) => {
   return {
     contributionData:
       response.data.user.contributionsCollection.contributionCalendar,
-    viewerData: response.data.viewer,
+    viewerData: response.data.user,
   };
 };
 
@@ -179,7 +178,7 @@ const GithubAdversary = () => {
       <GithubUsernameForm
         username={username}
         setUsername={setUsername}
-        hasError={hasError}
+        hasError={!!hasError}
       />
     </div>
   );
