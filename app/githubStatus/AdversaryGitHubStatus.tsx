@@ -34,8 +34,8 @@ export const AdversaryGitHubStatus = () => {
   };
 
   return (
-    <div className="flex flex-1 flex-col">
-      <Button onClick={cancelQuery}>Cancel Query</Button>
+    <div className="flex flex-1 flex-col gap-4">
+      {/* <Button onClick={cancelQuery}>Cancel Query</Button> */}
       <GithubUsernameForm
         username={username}
         setUsername={setUsername}
@@ -58,7 +58,7 @@ const AdversaryStatus = ({
   const formattedJoinDate = formatDistanceToNow(joinedDate, {
     addSuffix: true,
   });
-
+  console.log("error? ", viewerData);
   return (
     <>
       <Card className="w-full">
@@ -66,7 +66,7 @@ const AdversaryStatus = ({
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <Avatar className="w-32 h-32">
               <AvatarImage src={viewerData.avatarUrl} alt={viewerData.name} />
-              <AvatarFallback>{viewerData.name.slice(0, 2)}</AvatarFallback>
+              <AvatarFallback>{viewerData?.name?.slice(0, 2)}</AvatarFallback>
             </Avatar>
 
             <div className="flex-1 text-center md:text-left">
