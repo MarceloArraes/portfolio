@@ -30,8 +30,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { LoaderOverlay } from "../components/LoaderOverlay";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
 export const AdversaryGitHubStatus = () => {
@@ -44,11 +43,12 @@ export const AdversaryGitHubStatus = () => {
   console.log("AdversaryGitHubStatus data", data);
 
   const cancelQuery = () => {
-    queryClient.cancelQueries({ queryKey: ["username", username] });
+    queryClient.cancelQueries({ queryKey: ["contributions", username] });
   };
 
   return (
     <div className="flex flex-1 flex-col gap-4 md:w-1/2">
+      <LoaderOverlay isLoading={isLoading} />
       <Dialog open={openDialog}>
         <DialogTrigger asChild>
           <Button onClick={() => setOpenDialog(true)} variant="outline">
