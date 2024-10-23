@@ -25,9 +25,9 @@ const MainGithubStatus = ({
     addSuffix: true,
   });
   return (
-    <div className="flex flex-1 flex-col gap-4">
+    <div className="flex flex-col gap-4 max-h-full flex-1 md:w-1/2">
       <Card className="w-full">
-        <CardContent className="pt-6">
+        <CardContent className="pt-2">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <Avatar className="w-32 h-32">
               <AvatarImage src={viewerData.avatarUrl} alt={viewerData.name} />
@@ -53,13 +53,12 @@ const MainGithubStatus = ({
         </CardContent>
       </Card>
 
-      {/* Contributions Section */}
       <Card>
         <CardHeader>
           <CardTitle>Contributions</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="p-4 bg-card rounded-lg">
+          <div className="bg-card rounded-lg">
             <HeatMap
               data={contributionData.weeks}
               total={contributionData.totalContributions}
@@ -68,7 +67,6 @@ const MainGithubStatus = ({
         </CardContent>
       </Card>
 
-      {/* Pinned Repositories */}
       <Card>
         <CardHeader>
           <CardTitle>Pinned Repositories</CardTitle>
@@ -138,9 +136,9 @@ const MainGithubStatus = ({
                   | null
                   | undefined;
               }) => (
-                <Card key={repo.id} className="bg-card">
-                  <CardContent className="pt-6">
-                    <h3 className="font-semibold text-lg mb-2">
+                <Card key={repo.id} className="bg-card ">
+                  <CardContent className="pt-2 ">
+                    <h3 className="font-semibold text-lg mb-2 overflow-hidden text-ellipsis">
                       <a
                         href={repo.url}
                         className="hover:text-primary transition-colors"
@@ -192,7 +190,7 @@ export const GithubStatus = ({
   viewerData,
 }: GithubStatusProps) => {
   return (
-    <div className="flex flex-row gap-4">
+    <div className="flex flex-1 flex-col md:flex-wrap max-h-screen justify-between gap-2 w-full md:flex-col">
       <AdversaryGitHubStatus />
       <MainGithubStatus
         contributionData={contributionData}

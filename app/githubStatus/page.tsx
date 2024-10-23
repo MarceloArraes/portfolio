@@ -69,7 +69,7 @@ const GitHubStatusPage = async () => {
   const { contributionData, viewerData } = await fetchContributionData();
   console.log("viewerData", viewerData);
   return (
-    <div className="container mx-auto p-4 space-y-6 max-w-4xl">
+    <div className="container mx-auto p-4 space-y-6 max-w-full">
       <GithubStatus
         contributionData={contributionData}
         viewerData={viewerData}

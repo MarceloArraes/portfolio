@@ -134,8 +134,8 @@ export const HeatMap = ({ data, total }: HeatMapProps) => {
   const totalWidth = numWeeks * (daySize + gap);
   const totalHeight = numDays * (daySize + gap);
   return (
-    <Card className="flex flex-1 bg-slate-800 p-2 flex-col m-2">
-      <CardTitle className="m-2">Year Contributions: {total}</CardTitle>
+    <Card className="flex flex-1 bg-slate-800 p-2 flex-col mb-2">
+      <h2 className="m-1">Year Contributions: {total}</h2>
       <svg
         width="100%"
         height="100%"

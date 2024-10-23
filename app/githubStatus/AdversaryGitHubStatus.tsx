@@ -10,6 +10,7 @@ import {
   AwaitedReactNode,
   Key,
   useState,
+  FormEvent,
 } from "react";
 import {
   GithubUsernameForm,
@@ -20,27 +21,59 @@ import { formatDistanceToNow } from "date-fns";
 import { ContributionsAndViewerData } from "../lib/interface";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
 export const AdversaryGitHubStatus = () => {
   const queryClient = useQueryClient();
   const [username, setUsername] = useState<string>("");
+  const [openDialog, setOpenDialog] = useState<boolean>(false);
+  // const [showDialog, setShowDialog] = useState<boolean>(false);
   const { data, isLoading, error } = useGithubAdversaryStatus(username);
   const hasError = error && !isLoading;
   console.log("AdversaryGitHubStatus data", data);
 
   const cancelQuery = () => {
-    queryClient.cancelQueries({ queryKey: ["username"] });
+    queryClient.cancelQueries({ queryKey: ["username", username] });
   };
 
   return (
-    <div className="flex flex-1 flex-col gap-4">
-      {/* <Button onClick={cancelQuery}>Cancel Query</Button> */}
-      <GithubUsernameForm
-        username={username}
-        setUsername={setUsername}
-        hasError={!!hasError}
-      />
+    <div className="flex flex-1 flex-col gap-4 md:w-1/2">
+      <Dialog open={openDialog}>
+        <DialogTrigger asChild>
+          <Button onClick={() => setOpenDialog(true)} variant="outline">
+            {data ? "Another Profile?" : "Compare Githubs?"}
+          </Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Edit profile</DialogTitle>
+            <DialogDescription>
+              Make changes to your profile here. Click save when you&apos;re
+              done.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-4">
+            <GithubUsernameForm
+              username={username}
+              setOpenDialog={setOpenDialog}
+              hasError={!!hasError}
+              setUsername={setUsername}
+            />
+          </div>
+        </DialogContent>
+      </Dialog>
+
       <AdversaryStatus
         contributionData={data?.contributionData}
         viewerData={data?.viewerData}
@@ -61,7 +94,7 @@ const AdversaryStatus = ({
   return (
     <>
       <Card className="w-full">
-        <CardContent className="pt-6">
+        <CardContent className="pt-2">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
             <Avatar className="w-32 h-32">
               <AvatarImage src={viewerData.avatarUrl} alt={viewerData.name} />
@@ -87,7 +120,6 @@ const AdversaryStatus = ({
         </CardContent>
       </Card>
 
-      {/* Contributions Section */}
       <Card>
         <CardHeader>
           <CardTitle>Contributions</CardTitle>
@@ -102,7 +134,6 @@ const AdversaryStatus = ({
         </CardContent>
       </Card>
 
-      {/* Pinned Repositories */}
       <Card>
         <CardHeader>
           <CardTitle>Pinned Repositories</CardTitle>
@@ -173,7 +204,7 @@ const AdversaryStatus = ({
                   | undefined;
               }) => (
                 <Card key={repo.id} className="bg-card">
-                  <CardContent className="pt-6">
+                  <CardContent className="pt-2">
                     <h3 className="font-semibold text-lg mb-2">
                       <a
                         href={repo.url}
