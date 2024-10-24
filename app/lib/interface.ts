@@ -61,7 +61,7 @@ interface UserProfile {
   };
 }
 
-interface PinnedItem {
+export interface PinnedItem {
   id: string;
   name: string;
   description: string | null;

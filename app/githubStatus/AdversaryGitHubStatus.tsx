@@ -18,7 +18,7 @@ import {
 } from "../components/GithubAdversary";
 import { HeatMap } from "../components/HeatMap";
 import { formatDistanceToNow } from "date-fns";
-import { ContributionsAndViewerData } from "../lib/interface";
+import { ContributionsAndViewerData, PinnedItem } from "../lib/interface";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import {
@@ -31,14 +31,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { LoaderOverlay } from "../components/LoaderOverlay";
+import { Toasty } from "../components/Toasty";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
+
 export const AdversaryGitHubStatus = () => {
   const queryClient = useQueryClient();
   const [username, setUsername] = useState<string>("");
   const [openDialog, setOpenDialog] = useState<boolean>(false);
   // const [showDialog, setShowDialog] = useState<boolean>(false);
-  const { data, isLoading, error } = useGithubAdversaryStatus(username);
+  const { data, isLoading, error, status } = useGithubAdversaryStatus(username);
   const hasError = error && !isLoading;
   console.log("AdversaryGitHubStatus data", data);
 
@@ -78,6 +80,7 @@ export const AdversaryGitHubStatus = () => {
         contributionData={data?.contributionData}
         viewerData={data?.viewerData}
       />
+      {status == "success" && <Toasty />}
     </div>
   );
 };
@@ -91,6 +94,7 @@ const AdversaryStatus = ({
   const formattedJoinDate = formatDistanceToNow(joinedDate, {
     addSuffix: true,
   });
+
   return (
     <>
       <Card className="w-full">
@@ -140,111 +144,48 @@ const AdversaryStatus = ({
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {viewerData.pinnedItems.nodes.map(
-              (repo: {
-                id: Key | null | undefined;
-                url: string | undefined;
-                name:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<any, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<AwaitedReactNode>
-                  | null
-                  | undefined;
-                description:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<any, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<AwaitedReactNode>
-                  | null
-                  | undefined;
-                primaryLanguage: {
-                  color: any;
-                  name:
-                    | string
-                    | number
-                    | bigint
-                    | boolean
-                    | ReactElement<any, string | JSXElementConstructor<any>>
-                    | Iterable<ReactNode>
-                    | ReactPortal
-                    | Promise<AwaitedReactNode>
-                    | null
-                    | undefined;
-                };
-                stargazerCount:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<any, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<AwaitedReactNode>
-                  | null
-                  | undefined;
-                forkCount:
-                  | string
-                  | number
-                  | bigint
-                  | boolean
-                  | ReactElement<any, string | JSXElementConstructor<any>>
-                  | Iterable<ReactNode>
-                  | ReactPortal
-                  | Promise<AwaitedReactNode>
-                  | null
-                  | undefined;
-              }) => (
-                <Card key={repo.id} className="bg-card">
-                  <CardContent className="pt-2">
-                    <h3 className="font-semibold text-lg mb-2">
-                      <a
-                        href={repo.url}
-                        className="hover:text-primary transition-colors"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {repo.name}
-                      </a>
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      {repo.description}
-                    </p>
-                    <div className="flex items-center gap-4">
-                      {repo.primaryLanguage && (
-                        <div className="flex items-center gap-2">
-                          <span
-                            className="w-3 h-3 rounded-full"
-                            style={{
-                              backgroundColor: repo.primaryLanguage.color,
-                            }}
-                          />
-                          <span className="text-sm">
-                            {repo.primaryLanguage.name}
-                          </span>
-                        </div>
-                      )}
+            {viewerData.pinnedItems.nodes.map((repo: PinnedItem) => (
+              <Card key={repo.id} className="bg-card">
+                <CardContent className="pt-2">
+                  <h3 className="font-semibold text-lg mb-2">
+                    <a
+                      href={repo.url}
+                      className="hover:text-primary transition-colors"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {repo.name}
+                    </a>
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    {repo.description}
+                  </p>
+                  <div className="flex items-center gap-4">
+                    {repo.primaryLanguage && (
                       <div className="flex items-center gap-2">
-                        <Star className="w-4 h-4" />
-                        <span className="text-sm">{repo.stargazerCount}</span>
+                        <span
+                          className="w-3 h-3 rounded-full"
+                          style={{
+                            backgroundColor: repo.primaryLanguage.color,
+                          }}
+                        />
+                        <span className="text-sm">
+                          {repo.primaryLanguage.name}
+                        </span>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <GitFork className="w-4 h-4" />
-                        <span className="text-sm">{repo.forkCount}</span>
-                      </div>
+                    )}
+                    <div className="flex items-center gap-2">
+                      <Star className="w-4 h-4" />
+                      <span className="text-sm">{repo.stargazerCount}</span>
                     </div>
-                  </CardContent>
-                </Card>
-              )
-            )}
+                    <div className="flex items-center gap-2">
+                      <GitFork className="w-4 h-4" />
+                      <span className="text-sm">{repo.forkCount}</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </CardContent>
       </Card>

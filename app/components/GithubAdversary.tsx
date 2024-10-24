@@ -4,8 +4,7 @@ import { DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useQuery } from "@tanstack/react-query";
-import { formatDistanceToNow } from "date-fns";
-import { FormEvent, FormEventHandler, SyntheticEvent, useState } from "react";
+import { FormEvent } from "react";
 
 const fetchContributionData = async (username: string) => {
   const query = `
