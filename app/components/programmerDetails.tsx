@@ -9,6 +9,7 @@ import {
 import { Profile } from "../lib/interface";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
+import Link from "next/link";
 
 const fetchProfile = async () => {
   const query = `*[_type=='profile']`;
@@ -121,39 +122,45 @@ async function ProgrammerDetails() {
                 {profile.githubProfile && (
                   <p>
                     GitHub:{" "}
-                    <a href={profile.githubProfile} className="text-blue-500">
+                    <Link
+                      href={profile.githubProfile}
+                      className="text-blue-500"
+                    >
                       {profile.githubProfile}
-                    </a>
+                    </Link>
                   </p>
                 )}
                 {profile.linkedinProfile && (
                   <p>
                     LinkedIn:{" "}
-                    <a href={profile.linkedinProfile} className="text-blue-500">
+                    <Link
+                      href={profile.linkedinProfile}
+                      className="text-blue-500"
+                    >
                       {profile.linkedinProfile}
-                    </a>
+                    </Link>
                   </p>
                 )}
                 {profile.instagramProfile && (
                   <p>
                     Instagram:{" "}
-                    <a
+                    <Link
                       href={profile.instagramProfile}
                       className="text-blue-500"
                     >
                       {profile.instagramProfile}
-                    </a>
+                    </Link>
                   </p>
                 )}
                 {profile.portfolioProfile && (
                   <p>
                     Portfolio:{" "}
-                    <a
+                    <Link
                       href={profile.portfolioProfile}
                       className="text-blue-500"
                     >
                       {profile.portfolioProfile}
-                    </a>
+                    </Link>
                   </p>
                 )}
               </div>

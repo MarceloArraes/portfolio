@@ -13,6 +13,7 @@ import { HeatMap } from "../components/HeatMap";
 import { formatDistanceToNow } from "date-fns";
 import { ContributionsAndViewerData } from "../lib/interface";
 import { AdversaryGitHubStatus } from "./AdversaryGitHubStatus";
+import Link from "next/link";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
 
@@ -139,14 +140,14 @@ const MainGithubStatus = ({
                 <Card key={repo.id} className="bg-card ">
                   <CardContent className="pt-2 ">
                     <h3 className="font-semibold text-lg mb-2 overflow-hidden text-ellipsis">
-                      <a
-                        href={repo.url}
+                      <Link
+                        href={repo?.url ?? ""}
                         className="hover:text-primary transition-colors"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         {repo.name}
-                      </a>
+                      </Link>
                     </h3>
                     <p className="text-sm text-muted-foreground mb-4">
                       {repo.description}

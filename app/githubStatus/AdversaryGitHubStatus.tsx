@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/dialog";
 import { LoaderOverlay } from "../components/LoaderOverlay";
 import { Toasty } from "../components/Toasty";
+import Link from "next/link";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
 
@@ -148,14 +149,14 @@ const AdversaryStatus = ({
               <Card key={repo.id} className="bg-card">
                 <CardContent className="pt-2">
                   <h3 className="font-semibold text-lg mb-2">
-                    <a
+                    <Link
                       href={repo.url}
                       className="hover:text-primary transition-colors"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       {repo.name}
-                    </a>
+                    </Link>
                   </h3>
                   <p className="text-sm text-muted-foreground mb-4">
                     {repo.description}

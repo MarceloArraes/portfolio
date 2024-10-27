@@ -120,7 +120,7 @@ export const GithubUsernameForm = ({
 
   return (
     <form onSubmit={onSubmitGithubUsername}>
-      <div className="grid grid-cols-4 items-center gap-4">
+      <div className="grid grid-cols-4 items-center gap-4 mb-2">
         <Label htmlFor="username" className="text-right">
           Username
         </Label>

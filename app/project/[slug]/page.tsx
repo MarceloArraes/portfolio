@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Video } from "@/components/ui/video"; // Assuming you have a custom video component or ShadCN-compatible component for video display
 import { getFileAsset } from "@sanity/asset-utils";
+import Link from "next/link";
 
 export const revalidate = 30;
 
@@ -113,13 +114,13 @@ const ProjectArticle = async ({ params }: { params: { slug: string } }) => {
       {data[0]?.siteLink && (
         <div className="mt-12 flex justify-center">
           <Button asChild>
-            <a
+            <Link
               href={data[0]?.siteLink}
               target="_blank"
               rel="noopener noreferrer"
             >
               Visit Site
-            </a>
+            </Link>
           </Button>
         </div>
       )}

@@ -10,6 +10,7 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import ProgrammerDetails from "./components/programmerDetails";
 import { Card } from "@/components/ui/card";
 import { ContactDialog } from "./components/ContactMe";
+import Link from "next/link";
 
 const Home = () => {
   return (
@@ -39,12 +40,15 @@ const Home = () => {
       <div className="mt-16">
         <h2 className="text-2xl font-semibold text-primary text-center"></h2>
         <div className="flex flex-wrap justify-center gap-6 mt-8">
-          <a href="/projects" className="bg-card rounded-lg p-4 shadow-md w-64">
+          <Link
+            href="/projects"
+            className="bg-card rounded-lg p-4 shadow-md w-64"
+          >
             <h3 className="text-xl font-semibold text-foreground">
               See My Projects
             </h3>
             {/* <p className="text-muted mt-2">5 years experience</p> */}
-          </a>
+          </Link>
           <Dialog>
             <DialogTrigger>
               <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
@@ -58,7 +62,7 @@ const Home = () => {
           {/* <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left"> */}
           <ContactDialog />
           {/* </Card> */}
-          <a
+          <Link
             href="/githubStatus"
             className="bg-card rounded-lg p-4 shadow-md w-64"
           >
@@ -66,7 +70,7 @@ const Home = () => {
               See Github Statistics
             </h3>
             {/* <p className="text-muted mt-2">2 years experience</p> */}
-          </a>
+          </Link>
         </div>
       </div>
 

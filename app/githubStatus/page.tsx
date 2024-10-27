@@ -67,7 +67,7 @@ const fetchContributionData = async () => {
 
 const GitHubStatusPage = async () => {
   const { contributionData, viewerData } = await fetchContributionData();
-  console.log("viewerData", viewerData);
+  // console.log("GitHubStatusPage viewerData", viewerData);
   return (
     <div className="container mx-auto p-4 space-y-6 max-w-full">
       <GithubStatus
