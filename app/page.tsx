@@ -11,6 +11,9 @@ import ProgrammerDetails from "./components/programmerDetails";
 import { Card } from "@/components/ui/card";
 import { ContactDialog } from "./components/ContactMe";
 import Link from "next/link";
+import { ThreeDComponent } from "./components/ThreeDComponent";
+import { ThreeCanvas } from "./components/ThreeCanvas";
+import { ThreePhone } from "./components/ThreePhone";
 
 const Home = () => {
   return (
@@ -26,6 +29,16 @@ const Home = () => {
         {/* <h1 className={`text-4xl font-bold text-primary ${kodeMono.className}`}>
           Hey, I&apos;m Marcelo
         </h1> */}
+        <div className="fixed top-0 right-0">
+          <ThreeCanvas>
+            <ThreePhone />
+          </ThreeCanvas>
+        </div>
+        <div className="fixed top-0 left-0">
+          <ThreeCanvas>
+            <ThreeDComponent />
+          </ThreeCanvas>
+        </div>
         <Typewriter text="Hey, I'm Marcelo" speed={200} />
         <p className="mt-4 text-muted text-2xl">Full stack developer</p>
         <p className="mt-2 text-muted text-xl">
