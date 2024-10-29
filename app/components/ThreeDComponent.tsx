@@ -18,7 +18,7 @@ import {
 import { Suspense, useRef } from "react";
 
 export function ThreeDComponent() {
-  const group = useRef();
+  const group = useRef<THREE.Group>(null!);
   const gltf = useLoader(GLTFLoader, "./myComputer/scene.gltf");
 
   useFrame((state) => {
