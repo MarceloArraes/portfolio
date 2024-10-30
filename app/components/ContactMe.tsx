@@ -13,10 +13,32 @@ import { Input } from "../../components/ui/input";
 import { Textarea } from "../../components/ui/textarea";
 import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
+// import { Howl, Howler } from "howler";
+import { ThreeCanvas } from "./ThreeCanvas";
+import { ThreePhone } from "./ThreePhone";
+
+// var sound = new Howl({
+//   src: ["Doom-healerStalks.mp3"],
+// });
+
+// var sound = new Howl({
+//   src: ["sound.webm", "sound.mp3"],
+// });
 
 export const ContactDialog = () => {
   const [open, setOpen] = useState(false);
   const Web3Key = process.env.NEXT_PUBLIC_WEB3_EMAIL_ACCESS_KEY ?? "";
+
+  // if (open == true) {
+  //   sound.once("load", function () {
+  //     console.log("load Doom-healerStalks.mp3 play");
+  //     sound.play();
+  //   });
+  //   sound.on("end", function () {
+  //     console.log("Finished!");
+  //   });
+  // }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
@@ -57,6 +79,11 @@ export const ContactDialog = () => {
             Leave any message and I&apos;ll get back to you.
           </DialogDescription>
         </DialogHeader>
+        <div className="absolute  top-10 right-0 w-[300px] h-[300px]">
+          <ThreeCanvas>
+            <ThreePhone />
+          </ThreeCanvas>
+        </div>
         <form
           onSubmit={handleSubmit}
           className="space-y-4"

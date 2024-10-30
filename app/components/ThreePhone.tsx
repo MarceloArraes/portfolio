@@ -23,7 +23,8 @@ export function ThreePhone() {
       adjustCamera={false}
     >
       <primitive object={gltf.scene} scale={6} />
-      <OrbitControls autoRotate />
+      <OrbitControls autoRotate enablePan={false} />
+
       {/* <SpotLight position={[0, 2, -1]} intensity={10} angle={1.3} /> */}
       {/* <directionalLight color="yellow" intensity={2} position={[0, 0, 5]} /> */}
       <ambientLight intensity={1} />
