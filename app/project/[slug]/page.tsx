@@ -1,12 +1,11 @@
 import { simpleProjectCard } from "@/app/lib/interface";
-import { client, urlFor } from "@/app/lib/sanity";
+import { client, getVideoUrl, urlFor } from "@/app/lib/sanity";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Video } from "@/components/ui/video"; // Assuming you have a custom video component or ShadCN-compatible component for video display
-import { getFileAsset } from "@sanity/asset-utils";
 import Link from "next/link";
 
 export const revalidate = 30;
@@ -24,19 +23,6 @@ async function getDataOfProject(slug: string) {
     }`;
   const data = await client.fetch(querySingleProject);
   return data;
-}
-
-function getVideoUrl(assetRef: any) {
-  if (!assetRef || !assetRef.asset) return null;
-
-  const assetUrl = getFileAsset(assetRef.asset, {
-    projectId: "4hfzjbz1",
-    dataset: "production",
-    // projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-    // dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  });
-
-  return assetUrl ? assetUrl.url : null;
 }
 
 const ProjectArticle = async ({ params }: { params: { slug: string } }) => {

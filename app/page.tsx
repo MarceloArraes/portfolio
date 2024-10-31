@@ -11,6 +11,9 @@ import ProgrammerDetails from "./components/programmerDetails";
 import { Card } from "@/components/ui/card";
 import { ContactDialog } from "./components/ContactMe";
 import Link from "next/link";
+import { MessageBoard } from "./components/MessageBoard/MessageBoard";
+import { CreateMessage } from "./components/MessageBoard/CreateMessage";
+import { MessageBoardUseQuery } from "./components/MessageBoard/MessageBoardUseQuery";
 // import { ThreeDComponent } from "./components/ThreeDComponent";
 // import { ThreeCanvas } from "./components/ThreeCanvas";
 // import { ThreePhone } from "./components/ThreePhone";
@@ -49,6 +52,8 @@ const Home = () => {
       <div className="mt-16">
         <h2 className="text-2xl font-semibold text-primary text-center"></h2>
         <div className="flex flex-wrap justify-center gap-6 mt-8">
+          <MessageBoardUseQuery />
+          <CreateMessage />
           <Link
             href="/projects"
             className="bg-card rounded-lg p-4 shadow-md w-64"

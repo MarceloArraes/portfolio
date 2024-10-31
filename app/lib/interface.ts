@@ -61,6 +61,16 @@ interface UserProfile {
   };
 }
 
+export interface Message {
+  _type: "messages";
+  active: boolean;
+  _id?: string;
+  message: string;
+  _updatedAt?: string; // ISO date string
+  _createdAt?: string; // ISO date string
+  _rev?: string;
+}
+
 export interface PinnedItem {
   id: string;
   name: string;

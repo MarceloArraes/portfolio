@@ -25,7 +25,6 @@ export const Typewriter: React.FC<TypewriterProps> = ({
   }, [text]);
 
   useEffect(() => {
-    console.log("Initial text:", text);
     setDisplayedText("");
 
     const intervalId = setInterval(() => {
