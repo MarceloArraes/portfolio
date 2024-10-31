@@ -164,10 +164,10 @@ async function ProgrammerDetails() {
                   </p>
                 )}
               </div>
-              <div>
+              {/* <div>
                 <h3 className="font-semibold">Active:</h3>
                 <p className="text-gray-700">{profile.active ? "Yes" : "No"}</p>
-              </div>
+              </div> */}
             </div>
           ))}
           {/* </DialogDescription> */}
