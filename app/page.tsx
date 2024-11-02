@@ -52,8 +52,8 @@ const Home = () => {
       <div className="mt-16">
         <h2 className="text-2xl font-semibold text-primary text-center"></h2>
         <div className="flex flex-wrap justify-center gap-6 mt-8">
-          <MessageBoardUseQuery />
-          <CreateMessage />
+          {/* <MessageBoardUseQuery /> */}
+          {/* <CreateMessage /> */}
           <Link
             href="/projects"
             className="bg-card rounded-lg p-4 shadow-md w-64"
