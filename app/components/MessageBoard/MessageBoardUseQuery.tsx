@@ -13,7 +13,7 @@ export const MessageBoardUseQuery = ({
     queryFn: async () => {
       const response = await fetch("/api/messages", {
         next: {
-          revalidate: 1,
+          revalidate: 0,
         },
       });
       if (!response.ok) {
@@ -23,6 +23,7 @@ export const MessageBoardUseQuery = ({
       return result;
     },
     staleTime: 0,
+    gcTime: 100,
     // initialData, // Use server-provided initial data
   });
   // console.log("client side error?", error);
