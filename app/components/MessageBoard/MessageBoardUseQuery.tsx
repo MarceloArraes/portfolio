@@ -11,7 +11,11 @@ export const MessageBoardUseQuery = ({
   const { data, isLoading, error } = useQuery({
     queryKey: ["messages"],
     queryFn: async () => {
-      const response = await fetch("/api/messages");
+      const response = await fetch("/api/messages", {
+        next: {
+          revalidate: 1,
+        },
+      });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
