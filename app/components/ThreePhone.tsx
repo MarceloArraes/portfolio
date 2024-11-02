@@ -1,18 +1,46 @@
 "use client";
-import { Canvas, useLoader } from "@react-three/fiber";
-import { Suspense } from "react";
+import { ThreeEvent, useLoader } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 // import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import {
-  Environment,
-  OrbitControls,
-  SpotLight,
-  Stage,
-} from "@react-three/drei";
+import { OrbitControls, Stage } from "@react-three/drei";
+import { Howl, Howler } from "howler";
 
 export function ThreePhone() {
+  const soundRef = useRef<Howl | null>(null); // Keep track of the sound instance
+
   const gltf = useLoader(GLTFLoader, "./rotaryPhone/scene.gltf");
+
+  useEffect(() => {
+    // Initialize the sound once
+    if (!soundRef.current) {
+      soundRef.current = new Howl({
+        src: ["sounds/matrixPlainRing1.mp3"],
+      });
+    }
+
+    const sound = soundRef.current;
+
+    return () => {
+      sound.stop(); // Stop the sound if component unmounts
+    };
+  }, []);
+
+  const playSound = (event: ThreeEvent<MouseEvent>) => {
+    console.log("play sound ", event.delta);
+    // sound.once("load", function () {
+    const sound = soundRef?.current;
+    if (!sound) return;
+    if (sound && !sound?.playing()) {
+      sound.play();
+    }
+
+    // sound.play();
+    sound.on("end", function () {
+      console.log("Finished!");
+    });
+  };
 
   return (
     <Stage
@@ -21,8 +49,10 @@ export function ThreePhone() {
       position={[0, 1, 0]}
       shadows={{ type: "accumulative", bias: -0.001, intensity: Math.PI }}
       adjustCamera={false}
+      onClick={playSound}
+      onPointerOver={playSound}
     >
-      <primitive object={gltf.scene} scale={6} />
+      <primitive onClick={playSound} object={gltf.scene} scale={7} />
       <OrbitControls autoRotate enablePan={false} />
 
       {/* <SpotLight position={[0, 2, -1]} intensity={10} angle={1.3} /> */}

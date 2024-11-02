@@ -11,7 +11,7 @@ export const Toasty = () => {
     // Initialize the sound once
     if (!soundRef.current) {
       soundRef.current = new Howl({
-        src: ["toasty.mp3"],
+        src: ["sounds/toasty.mp3"],
       });
     }
 
