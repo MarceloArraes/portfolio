@@ -1,4 +1,5 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ChangeEvent, useState } from "react";
@@ -49,22 +50,19 @@ export const CreateMessage = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Vandalize My Page</h1>
-      <h2>Leave a short message</h2>
+    <div className="gap-4 p-2">
+      <h1 className="text-2xl font-bold">Leave an anonymous message</h1>
+      {/* <h2>Leave a short message</h2> */}
       <Input
         value={messageText}
         onChange={(e: ChangeEvent<HTMLInputElement>) =>
           setMessageText(e.target.value)
         }
+        className="mt-4 mb-4"
       />
-      <button
-        onClick={handleCreateMessage}
-        disabled={mutation.isPending}
-        className="mt-4 p-2 bg-blue-500 text-white rounded"
-      >
+      <Button onClick={handleCreateMessage} disabled={mutation.isPending}>
         {mutation.isPending ? "Creating..." : "Add New Message"}
-      </button>
+      </Button>
     </div>
   );
 };

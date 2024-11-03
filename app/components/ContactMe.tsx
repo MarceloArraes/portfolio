@@ -7,6 +7,7 @@ import {
   DialogTitle,
   DialogDescription,
   DialogContent,
+  DialogClose,
 } from "../../components/ui/dialog";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
@@ -16,6 +17,8 @@ import { Card } from "@/components/ui/card";
 // import { Howl, Howler } from "howler";
 import { ThreeCanvas } from "./ThreeCanvas";
 import { ThreePhone } from "./ThreePhone";
+import { MessageBoard } from "./MessageBoard/MessageBoard";
+import { CreateMessage } from "./MessageBoard/CreateMessage";
 
 // var sound = new Howl({
 //   src: ["Doom-healerStalks.mp3"],
@@ -27,6 +30,7 @@ import { ThreePhone } from "./ThreePhone";
 
 export const ContactDialog = () => {
   const [open, setOpen] = useState(false);
+  const [openMessageForm, setOpenMessageForm] = useState(false);
   const Web3Key = process.env.NEXT_PUBLIC_WEB3_EMAIL_ACCESS_KEY ?? "";
 
   // if (open == true) {
@@ -71,70 +75,79 @@ export const ContactDialog = () => {
           <h3 className="text-xl font-semibold text-foreground">Contact Me</h3>
         </Card>
       </DialogTrigger>
-      {/* <Dialog.Overlay className="fixed inset-0 bg-black/50" /> */}
-      <DialogContent>
-        <DialogHeader>
-          <DialogTitle>Contact Me</DialogTitle>
-          <DialogDescription>
-            Leave any message and I&apos;ll get back to you.
-          </DialogDescription>
-        </DialogHeader>
-        <div className="absolute  top-10 right-0 w-[300px] h-[300px]">
+
+      <DialogContent className="min-h-96 p-5">
+        {!openMessageForm && (
+          <DialogHeader>
+            <DialogTitle>Contact Me</DialogTitle>
+            <DialogDescription>
+              Leave any message and I&apos;ll get back to you.
+            </DialogDescription>
+          </DialogHeader>
+        )}
+        {openMessageForm && (
+          <div className="w-full h-full">
+            <CreateMessage />
+          </div>
+        )}
+        <div className="absolute top-10 right-0 w-[300px] h-[300px]">
           <ThreeCanvas>
-            <ThreePhone />
+            <ThreePhone setOpenMessageForm={setOpenMessageForm} />
           </ThreeCanvas>
         </div>
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-4"
-          //   action="https://api.web3forms.com/submit"
-          //   method="POST"
-        >
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium">
-              Name
-            </label>
-            <Input
-              id="name"
-              name="name"
-              type="text"
-              required
-              placeholder="Your name"
-              className="mt-1 block w-full"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium">
-              Email
-            </label>
-            <Input
-              id="email"
-              type="email"
-              name="email"
-              required
-              placeholder="Your email"
-              className="mt-1 block w-full"
-            />
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium">
-              Message
-            </label>
-            <Textarea
-              id="message"
-              name="message"
-              required
-              placeholder="Your message"
-              className="mt-1 block w-full"
-            />
-          </div>
-          <div className="flex justify-end space-x-2">
-            <Button variant="ghost" onClick={() => setOpen(false)}>
-              Cancel
-            </Button>
-            <Button type="submit">Send</Button>
-          </div>
-        </form>
+        {!openMessageForm && (
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-4"
+            //   action="https://api.web3forms.com/submit"
+            //   method="POST"
+          >
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium">
+                Name
+              </label>
+              <Input
+                id="name"
+                name="name"
+                type="text"
+                required
+                placeholder="Your name"
+                className="mt-1 block w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium">
+                Email
+              </label>
+              <Input
+                id="email"
+                type="email"
+                name="email"
+                required
+                placeholder="Your email"
+                className="mt-1 block w-full"
+              />
+            </div>
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium">
+                Message
+              </label>
+              <Textarea
+                id="message"
+                name="message"
+                required
+                placeholder="Your message"
+                className="mt-1 block w-full"
+              />
+            </div>
+            <div className="flex justify-end space-x-2">
+              <DialogClose asChild>
+                <Button variant="ghost">Cancel</Button>
+              </DialogClose>
+              <Button type="submit">Send</Button>
+            </div>
+          </form>
+        )}
       </DialogContent>
     </Dialog>
   );

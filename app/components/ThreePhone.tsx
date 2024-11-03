@@ -1,13 +1,17 @@
 "use client";
 import { ThreeEvent, useLoader } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { type Dispatch, type SetStateAction, useEffect, useRef } from "react";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 // import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { OrbitControls, Stage } from "@react-three/drei";
 import { Howl, Howler } from "howler";
 
-export function ThreePhone() {
+interface ThreePhoneProps {
+  setOpenMessageForm: Dispatch<SetStateAction<boolean>>;
+}
+
+export function ThreePhone({ setOpenMessageForm }: ThreePhoneProps) {
   const soundRef = useRef<Howl | null>(null); // Keep track of the sound instance
 
   const gltf = useLoader(GLTFLoader, "./rotaryPhone/scene.gltf");
@@ -24,18 +28,24 @@ export function ThreePhone() {
 
     return () => {
       sound.stop(); // Stop the sound if component unmounts
+      setOpenMessageForm(false);
     };
-  }, []);
+  }, [setOpenMessageForm]);
 
   const playSound = (event: ThreeEvent<MouseEvent>) => {
     console.log("play sound ", event.delta);
+    setOpenMessageForm((prev) => !prev);
+
     // sound.once("load", function () {
     const sound = soundRef?.current;
     if (!sound) return;
     if (sound && !sound?.playing()) {
       sound.play();
+      sound.fade(0.3, 0.05, 5000);
     }
-
+    sound.on("fade", function () {
+      console.log("#Faded!!");
+    });
     // sound.play();
     sound.on("end", function () {
       console.log("Finished!");

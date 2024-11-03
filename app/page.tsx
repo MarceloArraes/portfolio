@@ -5,15 +5,16 @@ import Footer from "./components/Footer";
 // import { msSansRetro, kodeMono } from "../styles/fonts";
 import { Typewriter } from "./components/Typewritter";
 // import { Button } from "@/components/ui/button";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 // import { Plus } from "lucide-react";
-import ProgrammerDetails from "./components/programmerDetails";
+import ProgrammerDetails from "./components/profile/programmerDetails";
 import { Card } from "@/components/ui/card";
 import { ContactDialog } from "./components/ContactMe";
 import Link from "next/link";
 import { MessageBoard } from "./components/MessageBoard/MessageBoard";
 import { CreateMessage } from "./components/MessageBoard/CreateMessage";
 import { MessageBoardUseQuery } from "./components/MessageBoard/MessageBoardUseQuery";
+import { ProfileDialog } from "./components/profile/ProfileDialog";
 // import { ThreeDComponent } from "./components/ThreeDComponent";
 // import { ThreeCanvas } from "./components/ThreeCanvas";
 // import { ThreePhone } from "./components/ThreePhone";
@@ -61,20 +62,22 @@ const Home = () => {
             <h3 className="text-xl font-semibold text-foreground">
               See My Projects
             </h3>
-            {/* <p className="text-muted mt-2">5 years experience</p> */}
           </Link>
+          {/* <ProfileDialog /> */}
           <Dialog>
             <DialogTrigger>
               <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
                 <h3 className="text-xl font-semibold text-foreground">
-                  My profile
+                  Anonymous Message
                 </h3>
               </Card>
             </DialogTrigger>
-            <ProgrammerDetails />
+            <DialogContent>
+              <CreateMessage />
+            </DialogContent>
           </Dialog>
-          {/* <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left"> */}
           <ContactDialog />
+
           {/* </Card> */}
           <Link
             href="/githubStatus"
