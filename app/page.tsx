@@ -64,7 +64,7 @@ const Home = () => {
             </h3>
           </Link>
           {/* <ProfileDialog /> */}
-          <Dialog>
+          {/* <Dialog>
             <DialogTrigger>
               <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
                 <h3 className="text-xl font-semibold text-foreground">
@@ -75,7 +75,7 @@ const Home = () => {
             <DialogContent>
               <CreateMessage />
             </DialogContent>
-          </Dialog>
+          </Dialog> */}
           <ContactDialog />
 
           {/* </Card> */}
