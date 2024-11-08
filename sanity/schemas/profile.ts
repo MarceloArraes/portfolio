@@ -26,6 +26,7 @@ export default defineType({
       type: 'image',
       title: 'Profile Image',
     }),
+
     defineField({
       name: 'profileImage2',
       type: 'image',
@@ -40,6 +41,11 @@ export default defineType({
       name: 'extraImage',
       type: 'image',
       title: 'Extra image',
+    }),
+    defineField({
+      name: 'resume',
+      type: 'file',
+      title: 'Resume',
     }),
     defineField({
       name: 'frontendTechs',
