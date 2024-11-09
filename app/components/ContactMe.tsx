@@ -19,6 +19,7 @@ import { ThreeCanvas } from "./ThreeCanvas";
 import { ThreePhone } from "./ThreePhone";
 import { MessageBoard } from "./MessageBoard/MessageBoard";
 import { CreateMessage } from "./MessageBoard/CreateMessage";
+import { Phone } from "lucide-react";
 
 // var sound = new Howl({
 //   src: ["Doom-healerStalks.mp3"],
@@ -71,7 +72,8 @@ export const ContactDialog = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="cursor-pointer">
-        <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
+        <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left flex flex-row gap-3">
+          <Phone size={25} />
           <h3 className="text-xl font-semibold text-foreground">Contact Me</h3>
         </Card>
       </DialogTrigger>

@@ -1,24 +1,11 @@
 import Image from "next/image";
-// import Link from "next/link";
-// import { Button } from "@/components/ui/button";
 import Footer from "./components/Footer";
-// import { msSansRetro, kodeMono } from "../styles/fonts";
 import { Typewriter } from "./components/Typewritter";
-// import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-// import { Plus } from "lucide-react";
-import ProgrammerDetails from "./components/profile/programmerDetails";
-import { Card } from "@/components/ui/card";
 import { ContactDialog } from "./components/ContactMe";
 import Link from "next/link";
-import { MessageBoard } from "./components/MessageBoard/MessageBoard";
-import { CreateMessage } from "./components/MessageBoard/CreateMessage";
-import { MessageBoardUseQuery } from "./components/MessageBoard/MessageBoardUseQuery";
 import { ProfileDialog } from "./components/profile/ProfileDialog";
 import { DownloadResume } from "./components/profile/ResumeDownload";
-// import { ThreeDComponent } from "./components/ThreeDComponent";
-// import { ThreeCanvas } from "./components/ThreeCanvas";
-// import { ThreePhone } from "./components/ThreePhone";
+import { ProjectsLink } from "./components/projects/ProjectsLink";
 
 const Home = () => {
   return (
@@ -56,14 +43,7 @@ const Home = () => {
         <div className="flex flex-wrap justify-center gap-6 mt-8">
           {/* <MessageBoardUseQuery /> */}
           {/* <CreateMessage /> */}
-          <Link
-            href="/projects"
-            className="bg-card rounded-lg p-4 shadow-md w-64"
-          >
-            <h3 className="text-xl font-semibold text-foreground">
-              See My Projects
-            </h3>
-          </Link>
+          <ProjectsLink />
           <ProfileDialog />
           <DownloadResume />
           {/* <Dialog>
@@ -80,7 +60,6 @@ const Home = () => {
           </Dialog> */}
           <ContactDialog />
 
-          {/* </Card> */}
           <Link
             href="/githubStatus"
             className="bg-card rounded-lg p-4 shadow-md w-64"
