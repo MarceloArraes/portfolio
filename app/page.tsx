@@ -15,6 +15,7 @@ import { MessageBoard } from "./components/MessageBoard/MessageBoard";
 import { CreateMessage } from "./components/MessageBoard/CreateMessage";
 import { MessageBoardUseQuery } from "./components/MessageBoard/MessageBoardUseQuery";
 import { ProfileDialog } from "./components/profile/ProfileDialog";
+import { DownloadResume } from "./components/profile/ResumeDownload";
 // import { ThreeDComponent } from "./components/ThreeDComponent";
 // import { ThreeCanvas } from "./components/ThreeCanvas";
 // import { ThreePhone } from "./components/ThreePhone";
@@ -63,7 +64,8 @@ const Home = () => {
               See My Projects
             </h3>
           </Link>
-          {/* <ProfileDialog /> */}
+          <ProfileDialog />
+          <DownloadResume />
           {/* <Dialog>
             <DialogTrigger>
               <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">

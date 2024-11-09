@@ -35,11 +35,13 @@ export interface Profile {
   profileImage1?: Asset;
   profileImage2?: Asset;
   profileImage3?: Asset;
+  resume?: Asset;
   extraImage?: Asset;
   frontendTechs?: string[];
   backendTechs?: string[];
   generalTechs?: string[];
   githubProfile?: string;
+  resumeURL?: string;
   linkedinProfile?: string;
   instagramProfile?: string;
   portfolioProfile?: string;
