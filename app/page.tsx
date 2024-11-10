@@ -2,10 +2,10 @@ import Image from "next/image";
 import Footer from "./components/Footer";
 import { Typewriter } from "./components/Typewritter";
 import { ContactDialog } from "./components/ContactMe";
-import Link from "next/link";
 import { ProfileDialog } from "./components/profile/ProfileDialog";
 import { DownloadResume } from "./components/profile/ResumeDownload";
 import { ProjectsLink } from "./components/projects/ProjectsLink";
+import { GithubStatisticsLink } from "./components/github/GithubStatisticsLink";
 
 const Home = () => {
   return (
@@ -60,15 +60,7 @@ const Home = () => {
           </Dialog> */}
           <ContactDialog />
 
-          <Link
-            href="/githubStatus"
-            className="bg-card rounded-lg p-4 shadow-md w-64"
-          >
-            <h3 className="text-xl font-semibold text-foreground">
-              See Github Statistics
-            </h3>
-            {/* <p className="text-muted mt-2">2 years experience</p> */}
-          </Link>
+          <GithubStatisticsLink />
         </div>
       </div>
 

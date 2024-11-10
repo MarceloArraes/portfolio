@@ -18,9 +18,47 @@ const config = {
       },
     },
     extend: {
+      keyframes: {
+        ping2: {
+          "75%": { transform: "scale(1.02)" },
+          "100%": { transform: "scale(1)" },
+        },
+        "accordion-down": {
+          from: { height: "0" },
+          to: { height: "var(--radix-accordion-content-height)" },
+        },
+        "accordion-up": {
+          from: { height: "var(--radix-accordion-content-height)" },
+          to: { height: "0" },
+        },
+      },
       // fontFamily: {
       //   "ms-sans-serif": ["ms_sans_serif", "sans-serif"],
       // },
+      // boxShadow:{
+
+      // }
+
+      /* 
+      ping {
+    75%, 100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+      */
+      animation: {
+        wiggle: "wiggle 1s ease-in-out infinite",
+        ping2: "ping2 1s ease-in-out infinite",
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
+      },
+      dropShadow: {
+        "3xl": "15px 5px 0px rgba(168,169,173)",
+        "4xl": [
+          "0 35px 35px rgba(168,169,173)",
+          "0 45px 65px rgba(0, 0, 0, 0.15)",
+        ],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -61,20 +99,12 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-      },
+      // keyframes: {
+
+      // },
+      // animation: {
+
+      // },
     },
   },
   plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],

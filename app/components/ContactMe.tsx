@@ -72,9 +72,12 @@ export const ContactDialog = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger className="cursor-pointer">
-        <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left flex flex-row gap-3">
-          <Phone size={25} />
-          <h3 className="text-xl font-semibold text-foreground">Contact Me</h3>
+        <Card className="bg-card rounded-lg  drop-shadow-3xl border-0 shadow-none w-64 flex flex-row items-center justify-start gap-3 dark: shadow-slate-200 hover:drop-shadow-none delay-100 transition hover:translate-x-4">
+          <div className="absolute rounded-lg h-full w-full shadow-inner gap-3 shadow-slate-200 animate-ping2" />
+          <Phone size={25} className="m-4" />
+          <h3 className="m-4 text-xl font-semibold text-foreground">
+            Contact Me
+          </h3>
         </Card>
       </DialogTrigger>
 

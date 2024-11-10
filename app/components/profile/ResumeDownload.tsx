@@ -32,7 +32,7 @@ export async function DownloadResume() {
       href={resumeURL as unknown as URL}
       // target="_blank"
       download
-      className="bg-card rounded-lg p-4 shadow-md w-64 flex flex-row items-center justify-start gap-3"
+      className="bg-card rounded-lg p-4 drop-shadow-3xl w-64 flex flex-row items-center justify-start gap-3 dark: shadow-slate-200 hover:drop-shadow-none delay-100 transition hover:translate-x-4"
     >
       <File size={25} />
       <h3 className="text-xl font-semibold text-foreground">My Resume</h3>
