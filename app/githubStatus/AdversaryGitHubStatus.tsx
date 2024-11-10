@@ -2,22 +2,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
 import { MapPin, Calendar, Star, GitFork } from "lucide-react";
-import {
-  ReactElement,
-  JSXElementConstructor,
-  ReactNode,
-  ReactPortal,
-  AwaitedReactNode,
-  Key,
-  useState,
-  FormEvent,
-} from "react";
+import { useState } from "react";
 import {
   GithubUsernameForm,
   useGithubAdversaryStatus,
 } from "../components/GithubAdversary";
 import { formatDistanceToNow } from "date-fns";
-import { ContributionsAndViewerData, PinnedItem } from "../lib/interface";
 import { useQueryClient } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import {
@@ -33,6 +23,7 @@ import { LoaderOverlay } from "../components/LoaderOverlay";
 import { Toasty } from "../components/Toasty";
 import Link from "next/link";
 import { HeatMap } from "../components/github/HeatMap";
+import { ContributionsAndViewerData, PinnedItem } from "../lib/interface";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
 

@@ -1,9 +1,9 @@
 import { client } from "../../lib/sanity";
 
-import { Profile } from "../../lib/interface";
 import Link from "next/link";
 import { File } from "lucide-react";
 import { URL } from "url";
+import { Profile } from "@/app/lib/interface";
 
 const fetchResume = async () => {
   const query = `*[_type == "profile"]{

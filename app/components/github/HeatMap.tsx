@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import * as d3 from "d3";
-import { WeekContribution } from "../lib/interface";
 import { Card, CardTitle } from "@/components/ui/card";
+import { WeekContribution } from "@/app/lib/interface";
 
 interface CharacterProps {
   greenTiles: { weekIndex: number; dayIndex: number; dayCount: number }[];

@@ -1,14 +1,14 @@
 import { X } from "lucide-react";
-import { client, urlFor } from "../../lib/sanity";
 import {
   DialogClose,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Profile } from "../../lib/interface";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import Link from "next/link";
+import { Profile } from "@/app/lib/interface";
+import { client, urlFor } from "@/app/lib/sanity";
 
 const fetchProfile = async () => {
   const query = `*[_type == "profile"]`;
