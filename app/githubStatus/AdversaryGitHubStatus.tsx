@@ -16,7 +16,6 @@ import {
   GithubUsernameForm,
   useGithubAdversaryStatus,
 } from "../components/GithubAdversary";
-import { HeatMap } from "../components/HeatMap";
 import { formatDistanceToNow } from "date-fns";
 import { ContributionsAndViewerData, PinnedItem } from "../lib/interface";
 import { useQueryClient } from "@tanstack/react-query";
@@ -33,6 +32,7 @@ import {
 import { LoaderOverlay } from "../components/LoaderOverlay";
 import { Toasty } from "../components/Toasty";
 import Link from "next/link";
+import { HeatMap } from "../components/github/HeatMap";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
 

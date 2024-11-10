@@ -9,11 +9,11 @@ import {
   AwaitedReactNode,
   Key,
 } from "react";
-import { HeatMap } from "../components/HeatMap";
 import { formatDistanceToNow } from "date-fns";
 import { ContributionsAndViewerData } from "../lib/interface";
 import { AdversaryGitHubStatus } from "./AdversaryGitHubStatus";
 import Link from "next/link";
+import { HeatMap } from "../components/github/HeatMap";
 
 interface GithubStatusProps extends ContributionsAndViewerData {}
 
