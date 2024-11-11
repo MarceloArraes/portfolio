@@ -41,23 +41,10 @@ const Home = () => {
       <div className="mt-16">
         <h2 className="text-2xl font-semibold text-primary text-center"></h2>
         <div className="flex flex-wrap justify-center gap-6 mt-8">
-          {/* <MessageBoardUseQuery /> */}
-          {/* <CreateMessage /> */}
           <ProjectsLink />
           <ProfileDialog />
           <DownloadResume />
-          {/* <Dialog>
-            <DialogTrigger>
-              <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
-                <h3 className="text-xl font-semibold text-foreground">
-                  Anonymous Message
-                </h3>
-              </Card>
-            </DialogTrigger>
-            <DialogContent>
-              <CreateMessage />
-            </DialogContent>
-          </Dialog> */}
+
           <ContactDialog />
 
           <GithubStatisticsLink />
@@ -70,3 +57,24 @@ const Home = () => {
 };
 
 export default Home;
+
+{
+  /* <MessageBoardUseQuery /> */
+}
+{
+  /* <CreateMessage /> */
+}
+{
+  /* <Dialog>
+            <DialogTrigger>
+              <Card className="bg-card rounded-lg p-4 shadow-md w-64 border-0 justify-start text-left">
+                <h3 className="text-xl font-semibold text-foreground">
+                  Anonymous Message
+                </h3>
+              </Card>
+            </DialogTrigger>
+            <DialogContent>
+              <CreateMessage />
+            </DialogContent>
+          </Dialog> */
+}
