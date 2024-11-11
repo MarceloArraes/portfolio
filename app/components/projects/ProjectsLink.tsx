@@ -1,6 +1,7 @@
 "use client";
 import { FolderOpenDot } from "lucide-react";
 import Link from "next/link";
+import { Howl } from "howler";
 var sound = new Howl({
   src: ["/sounds/buttonSounds/typing-sound-01-229863.mp3"],
   rate: 1,

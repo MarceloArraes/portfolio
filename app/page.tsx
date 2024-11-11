@@ -6,6 +6,7 @@ import { ProfileDialog } from "./components/profile/ProfileDialog";
 import { DownloadResume } from "./components/profile/ResumeDownload";
 import { ProjectsLink } from "./components/projects/ProjectsLink";
 import { GithubStatisticsLink } from "./components/github/GithubStatisticsLink";
+import { AudioComponent } from "./components/profile/AudioComponent";
 
 const Home = () => {
   return (
@@ -43,7 +44,9 @@ const Home = () => {
         <div className="flex flex-wrap justify-center gap-6 mt-8">
           <ProjectsLink />
           <ProfileDialog />
-          <DownloadResume />
+          <AudioComponent>
+            <DownloadResume />
+          </AudioComponent>
 
           <ContactDialog />
 
