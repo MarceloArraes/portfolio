@@ -21,25 +21,11 @@ import { ThreePhone } from "./ThreePhone";
 import { CreateMessage } from "./MessageBoard/CreateMessage";
 import { Phone } from "lucide-react";
 
-var sound = new Howl({
-  src: ["/sounds/buttonSounds/typing-sound-02-229861.mp3"],
-  rate: 1,
-});
-
 export const ContactDialog = () => {
   const [open, setOpen] = useState(false);
   const [openMessageForm, setOpenMessageForm] = useState(false);
   const Web3Key = process.env.NEXT_PUBLIC_WEB3_EMAIL_ACCESS_KEY ?? "";
-  let timeout: NodeJS.Timeout | null = null;
-  const mouseEnterHandler = () => {
-    timeout = setTimeout(() => {
-      sound.play();
-    }, 247);
-  };
-  const mouseOutHandler = () => {
-    clearTimeout(timeout!);
-    sound.stop();
-  };
+
   // if (open == true) {
   //   sound.once("load", function () {
   //     console.log("load Doom-healerStalks.mp3 play");
@@ -77,13 +63,9 @@ export const ContactDialog = () => {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger
-        className="cursor-pointer"
-        onMouseEnter={mouseEnterHandler}
-        onMouseLeave={mouseOutHandler}
-      >
+      <DialogTrigger className="cursor-pointer">
         <Card className="bg-card rounded-lg drop-shadow-3xl border-0 shadow-none w-64 flex flex-row items-center justify-start gap-3 dark: shadow-slate-200 hover:drop-shadow-none delay-100 transition hover:translate-x-4">
-          <div className="absolute rounded-lg h-full w-full shadow-inner gap-3 shadow-slate-200 animate-ping2" />
+          <div className="absolute rounded-lg h-full w-full shadow-md gap-3 shadow-slate-600 dark:shadow-slate-200 animate-ping2" />
           <Phone size={25} className="m-4" />
           <h3 className="text-xl font-semibold text-foreground">Contact Me</h3>
         </Card>

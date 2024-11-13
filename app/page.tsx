@@ -42,15 +42,24 @@ const Home = () => {
       <div className="mt-16">
         <h2 className="text-2xl font-semibold text-primary text-center"></h2>
         <div className="flex flex-wrap justify-center gap-6 mt-8">
-          <ProjectsLink />
-          <ProfileDialog />
+          <AudioComponent>
+            <ProjectsLink />
+          </AudioComponent>
+
+          <AudioComponent>
+            <ProfileDialog />
+          </AudioComponent>
+
           <AudioComponent>
             <DownloadResume />
           </AudioComponent>
 
-          <ContactDialog />
-
-          <GithubStatisticsLink />
+          <AudioComponent>
+            <ContactDialog />
+          </AudioComponent>
+          <AudioComponent>
+            <GithubStatisticsLink />
+          </AudioComponent>
         </div>
       </div>
 

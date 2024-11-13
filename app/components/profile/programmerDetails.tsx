@@ -15,7 +15,6 @@ const fetchProfile = async () => {
 
   try {
     const data = await client.fetch(query);
-    console.log("data515", data);
     return data;
   } catch (error) {
     console.error("Error fetching profile data:", error);
@@ -25,7 +24,6 @@ const fetchProfile = async () => {
 
 async function ProgrammerDetails() {
   const data: Profile[] = await fetchProfile();
-  console.log("profile data", data);
   if (!data || data.length === 0) {
     return <p>No profiles found.</p>;
   }

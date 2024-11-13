@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode } from "react";
 var sound = new Howl({
-  src: ["/sounds/buttonSounds/typing-sound-01-229863.mp3"],
+  src: ["/sounds/buttonSounds/typing-sound-02-229861.mp3"],
   rate: 1,
 });
 export const AudioComponent = ({ children }: { children: ReactNode }) => {
