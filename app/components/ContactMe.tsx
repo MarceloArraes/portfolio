@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import {
   DialogTrigger,
   Dialog,
@@ -86,9 +86,11 @@ export const ContactDialog = () => {
           </div>
         )}
         <div className="absolute top-10 right-0 w-[300px] h-[300px]">
-          <ThreeCanvas>
-            <ThreePhone setOpenMessageForm={setOpenMessageForm} />
-          </ThreeCanvas>
+          <Suspense>
+            <ThreeCanvas>
+              <ThreePhone setOpenMessageForm={setOpenMessageForm} />
+            </ThreeCanvas>
+          </Suspense>
         </div>
         {!openMessageForm && (
           <form

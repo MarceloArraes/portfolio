@@ -1,5 +1,6 @@
 "use client";
 import { ReactNode } from "react";
+import { Howl } from "howler";
 var sound = new Howl({
   src: ["/sounds/buttonSounds/typing-sound-02-229861.mp3"],
   rate: 1,
@@ -13,7 +14,7 @@ export const AudioComponent = ({ children }: { children: ReactNode }) => {
   };
   const mouseOutHandler = () => {
     clearTimeout(timeout!);
-    sound.stop();
+    // sound.stop();
   };
   return (
     <div onMouseEnter={mouseEnterHandler} onMouseLeave={mouseOutHandler}>

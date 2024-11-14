@@ -8,6 +8,7 @@ export const ThreeCanvas = ({ children }: { children: ReactNode }) => {
       //   camera={{ position: [-5, 0, -15], fov: 55 }}
       camera={{ position: [0, 50, 150], fov: 3 }}
       style={{ height: "100%" }}
+      performance={{ max: 20, min: 1 }}
     >
       {children}
     </Canvas>

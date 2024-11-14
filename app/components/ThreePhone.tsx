@@ -4,7 +4,7 @@ import { type Dispatch, type SetStateAction, useEffect, useRef } from "react";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 // import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
-import { OrbitControls, Stage } from "@react-three/drei";
+import { AdaptiveDpr, OrbitControls, Stage } from "@react-three/drei";
 import { Howl, Howler } from "howler";
 
 interface ThreePhoneProps {
@@ -62,6 +62,7 @@ export function ThreePhone({ setOpenMessageForm }: ThreePhoneProps) {
       onClick={playSound}
       onPointerOver={playSound}
     >
+      <AdaptiveDpr pixelated />
       <primitive onClick={playSound} object={gltf.scene} scale={7} />
       <OrbitControls autoRotate enablePan={false} />
 

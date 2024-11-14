@@ -14,7 +14,7 @@
     --primary-foreground: 0 0% 100%; /* Bright White */
     --secondary: 190 60% 40%; /* Vivid Teal */
     --secondary-foreground: 0 0% 100%; /* Bright White */
-    --muted: 210 40% 80%; /* Light Sky Blue */
+    --muted: 210 40% 60%; /* Light Sky Blue */
     --muted-foreground: 210 60% 20%; /* Dark Cyan */
     --accent: 190 70% 70%; /* Light Teal */
     --accent-foreground: 210 60% 20%; /* Dark Cyan */
@@ -37,7 +37,7 @@
     --primary-foreground: 210 20% 100%; /* Bright White */
     --secondary: 190 70% 90%; /* Bright White */
     --secondary-foreground: 210 60% 20%; /* Dark Cyan */
-    --muted: 210 20% 20%; /* Muted Steel Blue */
+    --muted: 210 20% 60%; /* Muted Steel Blue */
     --muted-foreground: 190 60% 40%; /* Vivid Teal */
     --accent: 190 70% 90%; /* Bright White */
     --accent-foreground: 210 20% 10%; /* Deep Midnight Cyan */
