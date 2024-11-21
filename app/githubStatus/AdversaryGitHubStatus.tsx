@@ -34,7 +34,7 @@ export const AdversaryGitHubStatus = () => {
   // const [showDialog, setShowDialog] = useState<boolean>(false);
   const { data, isLoading, error, status } = useGithubAdversaryStatus(username);
   const hasError = error && !isLoading;
-  console.log("AdversaryGitHubStatus data", data);
+  // console.log("AdversaryGitHubStatus data", data);
 
   const cancelQuery = () => {
     queryClient.cancelQueries({ queryKey: ["contributions", username] });

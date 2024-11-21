@@ -6,6 +6,7 @@ import Navbar from "./components/Navbar";
 // import { msSansRetro } from "../styles/fonts";
 import { Toaster } from "sonner";
 import { ReactQueryProvider } from "@/providers/ReactQueryProvider";
+import { ClothSimulation } from "./components/IterativeBackgrounds/TearableCloth";
 // const Kod = Kodchasan({ weight: "300", subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -30,7 +31,8 @@ export default function RootLayout({
           >
             <Navbar />
             <Toaster />
-            <main>{children}</main>
+            <ClothSimulation />
+            <main className="z-10">{children}</main>
           </ThemeProvider>
         </ReactQueryProvider>
       </body>
