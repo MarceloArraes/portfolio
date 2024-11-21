@@ -292,6 +292,11 @@ export const ClothSimulation = () => {
       mouseX = e.clientX - rect.left;
       mouseY = e.clientY - rect.top;
     };
+    const handleTouchMove = (e: TouchEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.touches[0].clientX - rect.left;
+      mouseY = e.touches[0].clientY - rect.top;
+    };
 
     const handleMouseUp = () => {
       mouseDown = false;
@@ -309,6 +314,7 @@ export const ClothSimulation = () => {
       requestAnimationFrame(update);
     };
     window.addEventListener("touchstart", touchDown);
+    window.addEventListener("touchmove", handleTouchMove);
     window.addEventListener("touchend", touchUp);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mousemove", handleMouseMove);
