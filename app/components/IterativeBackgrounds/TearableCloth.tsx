@@ -274,6 +274,19 @@ export const ClothSimulation = () => {
       // console.log("Mouse Down", { mouseX, mouseY, button: mouseButton });
     };
 
+    const touchDown = (e: TouchEvent) => {
+      // mouse.current.button = 1; // Changed from e.which to e.button
+      const rect = canvas.getBoundingClientRect();
+      mouseX = e.touches[0].clientX - rect.left;
+      mouseY = e.touches[0].clientY - rect.top;
+      mouseDown = true;
+      mouseButton = 2;
+    };
+    const touchUp = () => (e: TouchEvent) => {
+      // mouse.current.button = 1; // Changed from e.which to e.button
+      mouseDown = false;
+    };
+
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouseX = e.clientX - rect.left;
@@ -295,7 +308,8 @@ export const ClothSimulation = () => {
       cloth.draw();
       requestAnimationFrame(update);
     };
-
+    window.addEventListener("touchstart", touchDown);
+    window.addEventListener("touchend", touchUp);
     window.addEventListener("mousedown", handleMouseDown);
     window.addEventListener("mousemove", handleMouseMove);
     window.addEventListener("mouseup", handleMouseUp);
