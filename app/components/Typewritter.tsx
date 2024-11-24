@@ -37,7 +37,9 @@ export const Typewriter: React.FC<TypewriterProps> = ({
   }, [text, speed, typeNextChar]);
 
   return (
-    <h1 className={`text-4xl font-bold text-primary ${kodeMono.className}`}>
+    <h1
+      className={`text-4xl font-bold text-primary ${kodeMono.className} select-none`}
+    >
       {displayedText}
     </h1>
   );

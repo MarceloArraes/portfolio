@@ -10,8 +10,8 @@ import { AudioComponent } from "./components/profile/AudioComponent";
 
 const Home = () => {
   return (
-    <div className="container mx-auto px-4 py-16">
-      <div className="flex flex-col items-center text-center">
+    <div className="container mx-auto px-4 py-4 ">
+      <div className="flex flex-col items-center text-center select-none">
         <Image
           src="/myPics/marceloSythLord2-removebg-preview.png"
           alt="Profile Picture"

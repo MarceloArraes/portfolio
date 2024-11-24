@@ -52,7 +52,7 @@ const TypeWritterThing = () => {
 //               hover:bg-gray-200
 //               hover:text-red-700
 //               hover:shadow-lg
-//               focus:outline-none
+//               focus:outline-hidden
 //               dark:bg-slate-500
 //             dark:hover:bg-slate-300
 //               sm:px-6"

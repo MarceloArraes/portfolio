@@ -7,7 +7,7 @@ import { NotebookText } from "lucide-react";
 export const ProfileDialog = () => {
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger className="cursor-pointer">
         <Card className="bg-card rounded-lg p-4 w-64 border-0 justify-start text-left drop-shadow-3xl flex flex-row items-center gap-3 hover:drop-shadow-none delay-100 transition hover:translate-x-4">
           <NotebookText size={25} />
 
