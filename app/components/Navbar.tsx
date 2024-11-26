@@ -15,9 +15,9 @@ export default function Navbar() {
         <Image
           src="/marceloLogo.svg"
           alt="Marcelogo"
-          width={120}
-          height={120}
-          className="left-0 m-5 fixed top-0 rounded-full w-auto max-w-32"
+          width={140}
+          height={140}
+          className="left-0 m-5 fixed top-0 rounded-full w-auto max-w-36"
         />
       </Link>
       <div className="fixed right-0 m-5">
